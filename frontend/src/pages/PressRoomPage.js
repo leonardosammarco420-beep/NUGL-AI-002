@@ -34,43 +34,59 @@ export default function PressRoomPage() {
 
   // Extract date from URL or use title
   const extractDateFromArticle = (release) => {
-    // Try format: /2021/11/26/ (full year)
-    let urlDateMatch = release.link.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//);
-    if (urlDateMatch) {
-      return new Date(urlDateMatch[1], urlDateMatch[2] - 1, urlDateMatch[3]);
-    }
-    
-    // Try format: /20211126/ (Gleaner format)
-    urlDateMatch = release.link.match(/\/(\d{4})(\d{2})(\d{2})\//);
-    if (urlDateMatch) {
-      return new Date(urlDateMatch[1], urlDateMatch[2] - 1, urlDateMatch[3]);
-    }
-    
-    // Try format: /24/11/ (Benzinga 2-digit year: YY/MM/)
-    // Look specifically for benzinga.com URLs to avoid false matches
-    if (release.link.includes('benzinga.com')) {
-      urlDateMatch = release.link.match(/\/(\d{2})\/(\d{2})\/\d+/);
+    try {
+      let urlDateMatch;
+      
+      // Try format: /2024/12/15/ (full year-month-day)
+      urlDateMatch = release.link.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//);
       if (urlDateMatch) {
         const year = parseInt(urlDateMatch[1], 10);
-        const month = parseInt(urlDateMatch[2], 10);
-        // Convert 2-digit year to full year (assume 2000s)
-        const fullYear = 2000 + year;
-        // Create date with correct month (0-indexed) and year
-        const dateObj = new Date(fullYear, month - 1, 1);
-        // Log for debugging
-        console.log(`Benzinga date parsed: YY=${year}, MM=${month}, FullYear=${fullYear}, Date=${dateObj.toLocaleDateString()}`);
-        return dateObj;
+        const month = parseInt(urlDateMatch[2], 10) - 1; // 0-indexed
+        const day = parseInt(urlDateMatch[3], 10);
+        return new Date(year, month, day);
       }
+      
+      // Try format: /20211126/ (Gleaner format)
+      urlDateMatch = release.link.match(/\/(\d{4})(\d{2})(\d{2})\//);
+      if (urlDateMatch) {
+        const year = parseInt(urlDateMatch[1], 10);
+        const month = parseInt(urlDateMatch[2], 10) - 1; // 0-indexed
+        const day = parseInt(urlDateMatch[3], 10);
+        return new Date(year, month, day);
+      }
+      
+      // Try format: /YY/MM/ (Benzinga 2-digit year: YY/MM/article_id)
+      // Specifically for benzinga.com URLs
+      if (release.link.includes('benzinga.com')) {
+        urlDateMatch = release.link.match(/\/(\d{2})\/(\d{2})\/\d+/);
+        if (urlDateMatch) {
+          const yy = parseInt(urlDateMatch[1], 10);
+          const mm = parseInt(urlDateMatch[2], 10);
+          // 2-digit year to 4-digit (18-99 => 2018-2099, 00-17 => 2000-2017)
+          const fullYear = yy >= 18 ? 2000 + yy : 2000 + yy;
+          // Month is 1-indexed in URL, need 0-indexed for Date
+          return new Date(fullYear, mm - 1, 1);
+        }
+      }
+      
+      // Try to extract 4-digit year from title
+      const titleDateMatch = release.title.match(/\b(20\d{2})\b/);
+      if (titleDateMatch) {
+        const year = parseInt(titleDateMatch[1], 10);
+        return new Date(year, 0, 1);
+      }
+      
+      // Use published_at if available
+      if (release.published_at) {
+        return new Date(release.published_at);
+      }
+      
+      // Final fallback
+      return new Date(2020, 0, 1);
+    } catch (error) {
+      console.error('Date parsing error:', error, release.link);
+      return new Date(2020, 0, 1);
     }
-    
-    // Extract year from title as fallback
-    const titleDateMatch = release.title.match(/\b(20\d{2})\b/);
-    if (titleDateMatch) {
-      return new Date(titleDateMatch[1], 0, 1);
-    }
-    
-    // Default to 2018 for old articles without dates
-    return new Date(2018, 0, 1);
   };
 
   const formatDate = (date) => {
