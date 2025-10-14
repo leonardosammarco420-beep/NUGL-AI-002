@@ -286,6 +286,7 @@ export default function DispensariesPage() {
                 className={`p-6 rounded-xl border-2 transition-all text-left hover:scale-105 ${
                   region.color === 'emerald' ? 'border-emerald-500/30 bg-emerald-500/10 hover:border-emerald-500' :
                   region.color === 'orange' ? 'border-orange-500/30 bg-orange-500/10 hover:border-orange-500' :
+                  region.color === 'purple' ? 'border-purple-500/30 bg-purple-500/10 hover:border-purple-500' :
                   region.color === 'blue' ? 'border-blue-500/30 bg-blue-500/10 hover:border-blue-500' :
                   'border-teal-500/30 bg-teal-500/10 hover:border-teal-500'
                 }`}
