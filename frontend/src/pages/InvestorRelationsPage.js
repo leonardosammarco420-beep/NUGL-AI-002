@@ -15,11 +15,17 @@ export default function InvestorRelationsPage() {
   const [semiAnnualData, setSemiAnnualData] = useState(null);
   const [filings, setFilings] = useState([]);
   const [companyInfo, setCompanyInfo] = useState(null);
+  const [liveQuote, setLiveQuote] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeFinancialTab, setActiveFinancialTab] = useState('annual');
 
   useEffect(() => {
     fetchAllData();
+    fetchLiveQuote();
+    
+    // Refresh quote every 30 seconds
+    const quoteInterval = setInterval(fetchLiveQuote, 30000);
+    return () => clearInterval(quoteInterval);
   }, []);
 
   const fetchAllData = async () => {
