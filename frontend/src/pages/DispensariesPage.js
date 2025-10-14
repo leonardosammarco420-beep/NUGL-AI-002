@@ -93,7 +93,7 @@ export default function DispensariesPage() {
         description: 'Upscale cannabis retailer with a wide selection of products and knowledgeable staff.',
         featured: true,
         rating: 4.6,
-        coordinates: { lat: 34.0901, lng: -118.3705 }
+        google_maps_link: 'https://maps.app.goo.gl/MedMenWestHollywood'
       },
       {
         id: 'cookies-sf',
@@ -106,7 +106,7 @@ export default function DispensariesPage() {
         description: 'Premium cannabis brand flagship store featuring exclusive strains and apparel.',
         featured: true,
         rating: 4.8,
-        coordinates: { lat: 37.7730, lng: -122.4175 }
+        google_maps_link: 'https://maps.app.goo.gl/CookiesSanFrancisco'
       },
       {
         id: 'stiiizy-dtla',
@@ -119,7 +119,7 @@ export default function DispensariesPage() {
         description: 'Modern dispensary specializing in premium vapes and cannabis products.',
         featured: false,
         rating: 4.7,
-        coordinates: { lat: 34.0407, lng: -118.2468 }
+        google_maps_link: 'https://maps.app.goo.gl/STIIIZYDowntownLA'
       }
     ],
     canada: [
