@@ -113,6 +113,87 @@ export default function InvestorRelationsPage() {
           </div>
         </div>
 
+        {/* Live Stock Ticker */}
+        {liveQuote && (
+          <Card className="mb-8 bg-gradient-to-r from-slate-800/80 to-slate-900/80 border-teal-500/30 overflow-hidden" data-testid="live-ticker">
+            <div className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center">
+                    <BarChart3 className="w-6 h-6 text-teal-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white">{liveQuote.ticker}</h3>
+                    <p className="text-sm text-gray-400">{liveQuote.name}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-4xl font-bold text-white">${liveQuote.price.toFixed(4)}</div>
+                  <div className={`text-lg font-semibold flex items-center gap-2 justify-end ${liveQuote.change >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                    {liveQuote.change >= 0 ? <TrendingUp className="w-5 h-5" /> : <TrendingDown className="w-5 h-5" />}
+                    {liveQuote.change >= 0 ? '+' : ''}{liveQuote.change.toFixed(6)} ({liveQuote.change_percent >= 0 ? '+' : ''}{liveQuote.change_percent}%)
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 pt-4 border-t border-slate-700">
+                <div>
+                  <div className="text-xs text-gray-500 mb-1">BID / ASK</div>
+                  <div className="text-sm font-semibold text-white">
+                    {liveQuote.bid.toFixed(4)} / {liveQuote.ask.toFixed(4)}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    ({liveQuote.bid_size} x {liveQuote.ask_size})
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 mb-1">OPEN</div>
+                  <div className="text-sm font-semibold text-white">${liveQuote.open.toFixed(4)}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 mb-1">DAILY RANGE</div>
+                  <div className="text-sm font-semibold text-white">
+                    {liveQuote.low.toFixed(4)} - {liveQuote.high.toFixed(4)}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 mb-1">VOLUME</div>
+                  <div className="text-sm font-semibold text-white">{liveQuote.volume.toLocaleString()}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 mb-1">52WK RANGE</div>
+                  <div className="text-sm font-semibold text-white">
+                    {liveQuote.week_52_low.toFixed(4)} - {liveQuote.week_52_high.toFixed(4)}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 mb-1">AVG VOL (30D)</div>
+                  <div className="text-sm font-semibold text-white">{liveQuote.avg_volume_30d.toLocaleString()}</div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-700">
+                <div className="flex items-center gap-2">
+                  <div className={`w-2 h-2 rounded-full ${liveQuote.market_status === 'Market Open' ? 'bg-emerald-400 animate-pulse' : 'bg-gray-500'}`}></div>
+                  <span className="text-xs text-gray-400">{liveQuote.market_status}</span>
+                </div>
+                <div className="text-xs text-gray-500">
+                  Last Updated: {liveQuote.last_updated}
+                </div>
+                <Button
+                  onClick={() => window.open('https://www.otcmarkets.com/stock/NUGL/quote', '_blank')}
+                  variant="outline"
+                  size="sm"
+                  className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10 text-xs"
+                >
+                  <ExternalLink className="w-3 h-3 mr-1" />
+                  View on OTC Markets
+                </Button>
+              </div>
+            </div>
+          </Card>
+        )}
+
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Card className="bg-slate-800/50 border-teal-500/20 p-6">
