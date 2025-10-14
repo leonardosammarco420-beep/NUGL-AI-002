@@ -4,536 +4,581 @@ import Navigation from '../components/Navigation';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { TrendingUp, TrendingDown, FileText, Users, DollarSign, Building2, Globe, Mail, Phone, Download, ExternalLink, BarChart3 } from 'lucide-react';
-import { LineChart, Line, AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { TrendingUp, TrendingDown, FileText, ExternalLink, Download, Building2, BarChart3, Calendar } from 'lucide-react';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 export default function InvestorRelationsPage() {
   const { API } = useContext(AuthContext);
-  const [platformStats, setPlatformStats] = useState(null);
-  const [cryptoPrices, setCryptoPrices] = useState(null);
-  const [quarterlyData, setQuarterlyData] = useState([]);
+  const [annualData, setAnnualData] = useState(null);
+  const [quarterlyData, setQuarterlyData] = useState(null);
+  const [semiAnnualData, setSemiAnnualData] = useState(null);
+  const [filings, setFilings] = useState([]);
+  const [companyInfo, setCompanyInfo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [activeFinancialTab, setActiveFinancialTab] = useState('annual');
 
   useEffect(() => {
-    fetchData();
-    const interval = setInterval(fetchData, 60000); // Update every minute
-    return () => clearInterval(interval);
+    fetchAllData();
   }, []);
 
-  const fetchData = async () => {
+  const fetchAllData = async () => {
     try {
-      // Fetch platform stats
-      const statsResponse = await axios.get(`${API}/admin/stats`);
-      setPlatformStats(statsResponse.data);
-
-      // Fetch crypto prices for market data
-      const pricesResponse = await axios.get(`${API}/crypto/prices`);
-      setCryptoPrices(pricesResponse.data);
-
-      // Fetch quarterly financial data
-      const quarterlyResponse = await axios.get(`${API}/investor/quarterly-data`);
-      if (quarterlyResponse.data.quarterly_data) {
-        setQuarterlyData(quarterlyResponse.data.quarterly_data);
-      }
-    } catch (error) {
-      console.error('Failed to fetch IR data');
-      // Fallback to hardcoded data if API fails
-      setQuarterlyData([
-        { quarter: 'Q2 2024', date: '06/30/2024', revenue: 708, growth: '-', transactions: 1250 },
-        { quarter: 'Q3 2024', date: '09/30/2024', revenue: 726, growth: '+2.5%', transactions: 1420 },
-        { quarter: 'Q4 2024', date: '12/31/2024', revenue: 936, growth: '+28.9%', transactions: 2340 },
-        { quarter: 'Q1 2025', date: '03/31/2025', revenue: 751, growth: '-19.8%', transactions: 1880 },
-        { quarter: 'Q2 2025', date: '06/30/2025', revenue: 866, growth: '+15.3%', transactions: 2156 }
+      const [annualRes, quarterlyRes, semiRes, filingsRes, companyRes] = await Promise.all([
+        axios.get(`${API}/investor/annual-data`),
+        axios.get(`${API}/investor/quarterly-data`),
+        axios.get(`${API}/investor/semi-annual-data`),
+        axios.get(`${API}/investor/filings`),
+        axios.get(`${API}/investor/company-info`)
       ]);
+
+      setAnnualData(annualRes.data);
+      setQuarterlyData(quarterlyRes.data);
+      setSemiAnnualData(semiRes.data);
+      setFilings(filingsRes.data.filings);
+      setCompanyInfo(companyRes.data);
+    } catch (error) {
+      console.error('Failed to fetch investor data', error);
+      toast.error('Failed to load investor data');
     } finally {
       setLoading(false);
     }
   };
 
-  // Company Information
-  const companyInfo = {
-    name: 'NUGL INC',
-    ticker: 'NUGL',
-    exchange: 'OTC Markets',
-    sector: 'Technology - Cannabis & Cryptocurrency',
-    founded: '2024',
-    headquarters: 'United States',
-    employees: '10-50',
-    website: 'https://nugl.com',
-    description: 'NUGL Inc. operates The Digital Greenhouse, a cutting-edge technology platform combining cannabis market intelligence, cryptocurrency integration, and AI-powered insights. The company generates revenue through premium subscriptions, affiliate partnerships, NFT marketplace fees, and sponsored content.'
+  const formatCurrency = (value) => {
+    if (!value && value !== 0) return 'N/A';
+    return `$${Math.abs(value).toLocaleString()}K`;
   };
 
-  // Financial Highlights (Actual NUGL Inc. data)
-  const financialData = {
-    marketCap: '$5.2M',
-    revenue: '$3.29M', // TTM (Trailing 12 Months from latest 4 quarters)
-    revenueGrowth: '+34.2%',
-    grossMargin: '55%',
-    users: platformStats?.total_users || 0,
-    userGrowth: '+234%',
-    arr: '$3.46M', // Annual Recurring Revenue (projected from Q2 2025)
-    cashPosition: '$450K'
+  const formatPercentage = (value) => {
+    if (!value && value !== 0) return 'N/A';
+    return `${(value * 100).toFixed(2)}%`;
   };
 
-  // Revenue breakdown
-  const revenueBreakdown = [
-    { name: 'Subscriptions', value: 35, amount: 87500 },
-    { name: 'Affiliates', value: 30, amount: 75000 },
-    { name: 'NFT Fees', value: 20, amount: 50000 },
-    { name: 'Sponsored Content', value: 15, amount: 37500 }
-  ];
-
-  // Calculate dynamic values from quarterly data
-  const latestQuarter = quarterlyData.length > 0 ? quarterlyData[quarterlyData.length - 1] : null;
-  const ttmRevenue = quarterlyData.length >= 4 
-    ? quarterlyData.slice(-4).reduce((sum, q) => sum + q.revenue, 0) 
-    : 3279;
-  const ttmTransactions = quarterlyData.length >= 4
-    ? quarterlyData.slice(-4).reduce((sum, q) => sum + q.transactions, 0)
-    : 7796;
-
-  // Key metrics
-  const keyMetrics = [
-    { label: 'Platform Users', value: platformStats?.total_users || 0, change: '+234%', icon: <Users className="w-6 h-6" /> },
-    { label: 'Monthly Active Users', value: '1,234', change: '+156%', icon: <TrendingUp className="w-6 h-6" /> },
-    { label: 'Content Articles', value: platformStats?.total_articles || 0, change: '+89%', icon: <FileText className="w-6 h-6" /> },
-    { 
-      label: latestQuarter ? `${latestQuarter.quarter} Revenue` : 'Q2 2025 Revenue', 
-      value: latestQuarter ? `$${latestQuarter.revenue}K` : '$866K', 
-      change: latestQuarter?.growth || '+15.3%', 
-      icon: <DollarSign className="w-6 h-6" /> 
+  const formatDate = (dateStr) => {
+    try {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    } catch {
+      return dateStr;
     }
-  ];
+  };
 
-  // Management team
-  const management = [
-    { name: 'John Smith', title: 'Chief Executive Officer', bio: '15+ years in cannabis tech and fintech' },
-    { name: 'Sarah Johnson', title: 'Chief Technology Officer', bio: 'Former VP Engineering at major crypto exchange' },
-    { name: 'Michael Chen', title: 'Chief Financial Officer', bio: 'Previously CFO at publicly-traded cannabis REIT' },
-    { name: 'Emily Rodriguez', title: 'VP of Business Development', bio: 'Expert in affiliate marketing and partnerships' }
-  ];
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+        <Navigation />
+        <div className="flex items-center justify-center h-screen">
+          <div className="text-white text-xl">Loading investor data...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <Navigation />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      
+      <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
-        <div className="mb-8" data-testid="ir-header">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h1 className="text-4xl font-bold text-white mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                Investor Relations
-              </h1>
-              <p className="text-gray-400">NUGL Inc. - The Digital Greenhouse</p>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button
-                onClick={() => window.location.href = '/press-room'}
-                variant="outline"
-                className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
-              >
-                <FileText className="w-4 h-4 mr-2" />
-                Press Room
-              </Button>
-              <div className="text-right">
-                <div className="text-sm text-gray-400 mb-1">OTC Markets</div>
-                <div className="text-3xl font-bold text-white">NUGL</div>
-              </div>
-            </div>
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Building2 className="w-10 h-10 text-teal-400" />
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
+              Investor Relations
+            </h1>
+          </div>
+          <p className="text-gray-400 text-lg mb-2">{companyInfo?.name || 'NUGL Inc.'}</p>
+          <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+            <span>Ticker: <span className="text-teal-400 font-semibold">{companyInfo?.ticker}</span></span>
+            <span>•</span>
+            <span>{companyInfo?.exchange}</span>
+            <span>•</span>
+            <span>FY Ends: {companyInfo?.fiscal_year_end}</span>
           </div>
         </div>
 
-        {/* Key Metrics Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {keyMetrics.map((metric, idx) => (
-            <Card key={idx} className="bg-gradient-to-br from-teal-500/10 to-emerald-500/10 border-teal-500/30 p-6">
-              <div className="flex items-center justify-between mb-3">
-                <div className="text-teal-400">{metric.icon}</div>
-                <span className="text-green-400 text-sm font-semibold">{metric.change}</span>
-              </div>
-              <div className="text-3xl font-bold text-white mb-1">{metric.value}</div>
-              <div className="text-gray-400 text-sm">{metric.label}</div>
-            </Card>
-          ))}
+        {/* Quick Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          <Card className="bg-slate-800/50 border-teal-500/20 p-6">
+            <div className="text-sm text-gray-400 mb-1">Latest Annual Revenue</div>
+            <div className="text-2xl font-bold text-white">
+              {annualData?.years?.[0] ? formatCurrency(annualData.years[0].income_statement.total_revenue) : 'N/A'}
+            </div>
+            <div className="text-xs text-gray-500 mt-1">
+              {annualData?.years?.[0]?.year}
+            </div>
+          </Card>
+          <Card className="bg-slate-800/50 border-purple-500/20 p-6">
+            <div className="text-sm text-gray-400 mb-1">Gross Margin</div>
+            <div className="text-2xl font-bold text-white">
+              {annualData?.years?.[0] ? formatPercentage(annualData.years[0].key_ratios.gross_margin) : 'N/A'}
+            </div>
+            <div className="text-xs text-gray-500 mt-1">
+              {annualData?.years?.[0]?.year}
+            </div>
+          </Card>
+          <Card className="bg-slate-800/50 border-emerald-500/20 p-6">
+            <div className="text-sm text-gray-400 mb-1">Latest Quarter Revenue</div>
+            <div className="text-2xl font-bold text-white">
+              {quarterlyData?.quarters?.[0] ? formatCurrency(quarterlyData.quarters[0].revenue) : 'N/A'}
+            </div>
+            <div className="text-xs text-gray-500 mt-1">
+              {quarterlyData?.quarters?.[0]?.quarter}
+            </div>
+          </Card>
+          <Card className="bg-slate-800/50 border-blue-500/20 p-6">
+            <div className="text-sm text-gray-400 mb-1">Available Filings</div>
+            <div className="text-2xl font-bold text-white">{filings?.length || 0}</div>
+            <div className="text-xs text-gray-500 mt-1">OTC Markets</div>
+          </Card>
         </div>
 
-        <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="bg-slate-800 mb-6">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="financials">Financials</TabsTrigger>
-            <TabsTrigger value="metrics">Platform Metrics</TabsTrigger>
-            <TabsTrigger value="team">Management</TabsTrigger>
-            <TabsTrigger value="documents">Documents</TabsTrigger>
+        {/* OTC Markets Links */}
+        <div className="mb-8 flex gap-3 flex-wrap justify-center">
+          <Button
+            onClick={() => window.open(companyInfo?.otc_profile, '_blank')}
+            variant="outline"
+            className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+            data-testid="otc-profile-link"
+          >
+            <ExternalLink className="w-4 h-4 mr-2" />
+            OTC Profile
+          </Button>
+          <Button
+            onClick={() => window.open(companyInfo?.otc_financials, '_blank')}
+            variant="outline"
+            className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+            data-testid="otc-financials-link"
+          >
+            <BarChart3 className="w-4 h-4 mr-2" />
+            OTC Financials
+          </Button>
+          <Button
+            onClick={() => window.open(companyInfo?.otc_disclosure, '_blank')}
+            variant="outline"
+            className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+            data-testid="otc-disclosure-link"
+          >
+            <FileText className="w-4 h-4 mr-2" />
+            OTC Disclosure
+          </Button>
+        </div>
+
+        {/* Main Content Tabs */}
+        <Tabs defaultValue="financials" className="w-full">
+          <TabsList className="bg-slate-800 mb-6 grid w-full grid-cols-3 md:grid-cols-5">
+            <TabsTrigger value="financials" data-testid="financials-tab">Financials</TabsTrigger>
+            <TabsTrigger value="filings" data-testid="filings-tab">Filings</TabsTrigger>
+            <TabsTrigger value="company" data-testid="company-tab">Company</TabsTrigger>
           </TabsList>
-
-          {/* Overview Tab */}
-          <TabsContent value="overview" className="space-y-6">
-            <Card className="bg-slate-800/50 border-teal-500/20 p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">Company Overview</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Company Name</p>
-                  <p className="text-white font-semibold">{companyInfo.name}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Ticker Symbol</p>
-                  <p className="text-white font-semibold">{companyInfo.ticker}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Exchange</p>
-                  <p className="text-white font-semibold">{companyInfo.exchange}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Sector</p>
-                  <p className="text-white font-semibold">{companyInfo.sector}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Founded</p>
-                  <p className="text-white font-semibold">{companyInfo.founded}</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-1">Employees</p>
-                  <p className="text-white font-semibold">{companyInfo.employees}</p>
-                </div>
-              </div>
-              <div className="border-t border-slate-700 pt-6">
-                <h3 className="text-lg font-semibold text-white mb-3">Business Description</h3>
-                <p className="text-gray-300 leading-relaxed">{companyInfo.description}</p>
-              </div>
-            </Card>
-
-            {/* Investment Highlights */}
-            <Card className="bg-slate-800/50 border-teal-500/20 p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">Investment Highlights</h2>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-teal-400 font-bold">1</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1">Multi-Revenue Stream Platform</h4>
-                    <p className="text-gray-400">8 distinct revenue streams including subscriptions ($29.99-$99.99/mo), affiliate commissions, NFT marketplace fees, and sponsored content.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-teal-400 font-bold">2</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1">High Growth Market</h4>
-                    <p className="text-gray-400">Operating at intersection of three rapidly growing markets: legal cannabis ($50B+ market), cryptocurrency ($2T+ market), and AI technology.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-teal-400 font-bold">3</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1">Strong User Growth</h4>
-                    <p className="text-gray-400">234% YoY user growth with high engagement metrics. Viral referral program driving organic acquisition.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-teal-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-teal-400 font-bold">4</span>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold mb-1">Technology Moat</h4>
-                    <p className="text-gray-400">Proprietary AI integration (GPT-5), real-time crypto price feeds, automated content aggregation, and comprehensive analytics platform.</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </TabsContent>
 
           {/* Financials Tab */}
           <TabsContent value="financials" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="bg-slate-800/50 border-teal-500/20 p-6">
-                <p className="text-gray-400 text-sm mb-2">Market Cap</p>
-                <p className="text-3xl font-bold text-white mb-1">{financialData.marketCap}</p>
-                <p className="text-green-400 text-sm">+45% YTD</p>
-              </Card>
-              <Card className="bg-slate-800/50 border-teal-500/20 p-6">
-                <p className="text-gray-400 text-sm mb-2">Annual Revenue</p>
-                <p className="text-3xl font-bold text-white mb-1">{financialData.revenue}</p>
-                <p className="text-green-400 text-sm">{financialData.revenueGrowth} YoY</p>
-              </Card>
-              <Card className="bg-slate-800/50 border-teal-500/20 p-6">
-                <p className="text-gray-400 text-sm mb-2">Gross Margin</p>
-                <p className="text-3xl font-bold text-white mb-1">{financialData.grossMargin}</p>
-                <p className="text-gray-400 text-sm">Software-like margins</p>
-              </Card>
-              <Card className="bg-slate-800/50 border-teal-500/20 p-6">
-                <p className="text-gray-400 text-sm mb-2">Cash Position</p>
-                <p className="text-3xl font-bold text-white mb-1">{financialData.cashPosition}</p>
-                <p className="text-gray-400 text-sm">18 months runway</p>
-              </Card>
+            {/* Financial Period Tabs */}
+            <div className="bg-slate-800/30 rounded-xl p-2 flex gap-2 mb-6">
+              <button
+                onClick={() => setActiveFinancialTab('annual')}
+                className={`flex-1 py-3 px-4 rounded-lg transition-all ${
+                  activeFinancialTab === 'annual'
+                    ? 'bg-teal-500 text-white font-semibold'
+                    : 'bg-transparent text-gray-400 hover:text-white'
+                }`}
+                data-testid="annual-tab"
+              >
+                Annual
+              </button>
+              <button
+                onClick={() => setActiveFinancialTab('semi-annual')}
+                className={`flex-1 py-3 px-4 rounded-lg transition-all ${
+                  activeFinancialTab === 'semi-annual'
+                    ? 'bg-teal-500 text-white font-semibold'
+                    : 'bg-transparent text-gray-400 hover:text-white'
+                }`}
+                data-testid="semi-annual-tab"
+              >
+                Semi-Annual
+              </button>
+              <button
+                onClick={() => setActiveFinancialTab('quarterly')}
+                className={`flex-1 py-3 px-4 rounded-lg transition-all ${
+                  activeFinancialTab === 'quarterly'
+                    ? 'bg-teal-500 text-white font-semibold'
+                    : 'bg-transparent text-gray-400 hover:text-white'
+                }`}
+                data-testid="quarterly-tab"
+              >
+                Quarterly
+              </button>
             </div>
 
-            {/* Revenue Chart */}
-            <Card className="bg-slate-800/50 border-teal-500/20 p-6">
-              <h3 className="text-xl font-semibold text-white mb-6">Quarterly Revenue Growth</h3>
-              <ResponsiveContainer width="100%" height={300}>
-                <AreaChart data={quarterlyData}>
-                  <defs>
-                    <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#14b8a6" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                  <XAxis dataKey="quarter" stroke="#94a3b8" />
-                  <YAxis stroke="#94a3b8" label={{ value: 'Revenue ($K)', angle: -90, position: 'insideLeft', fill: '#94a3b8' }} />
-                  <Tooltip
-                    contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }}
-                    labelStyle={{ color: '#f8fafc' }}
-                  />
-                  <Area type="monotone" dataKey="revenue" stroke="#14b8a6" fillOpacity={1} fill="url(#colorRevenue)" name="Revenue ($K)" />
-                </AreaChart>
-              </ResponsiveContainer>
-            </Card>
+            {/* Annual Data */}
+            {activeFinancialTab === 'annual' && annualData && (
+              <div className="space-y-6">
+                <div className="text-sm text-gray-400 mb-4">
+                  Values in {annualData.values_in} {annualData.currency} • Fiscal Year Ends {annualData.fiscal_year_end}
+                </div>
+                {annualData.years.map((yearData) => (
+                  <Card key={yearData.year} className="bg-slate-800/50 border-slate-700 p-6">
+                    <div className="flex items-center justify-between mb-6">
+                      <div>
+                        <h3 className="text-2xl font-bold text-white">{yearData.year}</h3>
+                        <p className="text-sm text-gray-400">Year Ended {formatDate(yearData.period_end)}</p>
+                      </div>
+                      {yearData.filing_link && (
+                        <Button
+                          onClick={() => window.open(yearData.filing_link, '_blank')}
+                          variant="outline"
+                          size="sm"
+                          className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+                        >
+                          <Download className="w-4 h-4 mr-2" />
+                          View Filing
+                        </Button>
+                      )}
+                    </div>
 
-            {/* Quarterly Performance Table */}
-            <Card className="bg-slate-800/50 border-teal-500/20 p-6">
-              <h3 className="text-xl font-semibold text-white mb-6">Quarterly Performance Overview</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left">
-                  <thead>
-                    <tr className="border-b border-slate-700">
-                      <th className="pb-3 text-gray-400 font-semibold text-sm">Quarter</th>
-                      <th className="pb-3 text-gray-400 font-semibold text-sm">Period End</th>
-                      <th className="pb-3 text-gray-400 font-semibold text-sm text-right">Total Revenue</th>
-                      <th className="pb-3 text-gray-400 font-semibold text-sm text-right">QoQ Growth</th>
-                      <th className="pb-3 text-gray-400 font-semibold text-sm text-right">Transactions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[...quarterlyData].reverse().map((quarter, idx) => (
-                      <tr key={idx} className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
-                        <td className="py-4">
-                          <div className="flex items-center gap-2">
-                            <span className="text-white font-semibold">{quarter.quarter}</span>
-                            {idx === 0 && (
-                              <span className="px-2 py-0.5 bg-teal-500/20 text-teal-400 text-xs rounded-full">Latest</span>
-                            )}
+                    {/* Income Statement */}
+                    <div className="space-y-4">
+                      <h4 className="text-lg font-semibold text-white border-b border-slate-700 pb-2">
+                        Income Statement
+                      </h4>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div>
+                          <div className="text-xs text-gray-400">Total Revenue</div>
+                          <div className="text-lg font-semibold text-white">
+                            {formatCurrency(yearData.income_statement.total_revenue)}
                           </div>
-                        </td>
-                        <td className="py-4 text-gray-300">{quarter.date}</td>
-                        <td className="py-4 text-right">
-                          <span className="text-white font-semibold text-lg">${quarter.revenue}K</span>
-                        </td>
-                        <td className="py-4 text-right">
-                          {quarter.growth !== '-' ? (
-                            <span className={`font-semibold ${quarter.growth.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}>
-                              {quarter.growth}
-                            </span>
-                          ) : (
-                            <span className="text-gray-500">-</span>
-                          )}
-                        </td>
-                        <td className="py-4 text-right text-gray-300">{quarter.transactions.toLocaleString()}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                  <tfoot className="border-t-2 border-teal-500/30">
-                    <tr>
-                      <td className="pt-4 text-gray-400 font-semibold" colSpan="2">Trailing 12 Months (TTM)</td>
-                      <td className="pt-4 text-right">
-                        <span className="text-teal-400 font-bold text-xl">
-                          ${ttmRevenue}K
-                        </span>
-                      </td>
-                      <td className="pt-4 text-right text-green-400 font-semibold">+34.2%</td>
-                      <td className="pt-4 text-right">
-                        <span className="text-white font-semibold">
-                          {ttmTransactions.toLocaleString()}
-                        </span>
-                      </td>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <div className="mt-6 pt-6 border-t border-slate-700">
-                <p className="text-gray-400 text-sm mb-2">
-                  <strong className="text-white">Note:</strong> All revenue figures are in thousands (K). Data is updated quarterly following the close of each fiscal quarter.
-                </p>
-                <p className="text-gray-400 text-sm">
-                  <strong className="text-white">Next Update:</strong> Q3 2025 results expected by September 30, 2025
-                </p>
-              </div>
-            </Card>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-400">Cost of Revenue</div>
+                          <div className="text-lg font-semibold text-white">
+                            {formatCurrency(yearData.income_statement.cost_of_revenue)}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-400">Gross Profit</div>
+                          <div className="text-lg font-semibold text-emerald-400">
+                            {formatCurrency(yearData.income_statement.gross_profit)}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-400">Operating Expenses</div>
+                          <div className="text-lg font-semibold text-white">
+                            {formatCurrency(yearData.income_statement.total_expenses)}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-400">Operating Income</div>
+                          <div className={`text-lg font-semibold ${yearData.income_statement.operating_income >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                            {yearData.income_statement.operating_income >= 0 ? '+' : ''}{formatCurrency(yearData.income_statement.operating_income)}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-400">Net Income</div>
+                          <div className={`text-lg font-semibold ${yearData.income_statement.net_income >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                            {yearData.income_statement.net_income >= 0 ? '+' : ''}{formatCurrency(yearData.income_statement.net_income)}
+                          </div>
+                        </div>
+                      </div>
 
-            {/* Revenue Breakdown */}
-            <Card className="bg-slate-800/50 border-teal-500/20 p-6">
-              <h3 className="text-xl font-semibold text-white mb-6">Revenue Breakdown</h3>
-              <div className="space-y-4">
-                {revenueBreakdown.map((item, idx) => (
-                  <div key={idx}>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-white font-medium">{item.name}</span>
-                      <span className="text-teal-400 font-semibold">${(item.amount / 1000).toFixed(0)}K ({item.value}%)</span>
+                      {/* Key Ratios */}
+                      <div className="mt-6 pt-4 border-t border-slate-700">
+                        <h4 className="text-sm font-semibold text-white mb-3">Key Financial Ratios</h4>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                          <div>
+                            <div className="text-xs text-gray-400">EPS</div>
+                            <div className="text-base font-semibold text-white">
+                              ${yearData.key_ratios.eps.toFixed(3)}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-xs text-gray-400">Gross Margin</div>
+                            <div className="text-base font-semibold text-white">
+                              {formatPercentage(yearData.key_ratios.gross_margin)}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-xs text-gray-400">Operating Margin</div>
+                            <div className="text-base font-semibold text-white">
+                              {formatPercentage(yearData.key_ratios.operating_margin)}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="text-xs text-gray-400">P/E Ratio</div>
+                            <div className="text-base font-semibold text-white">
+                              {yearData.key_ratios.price_earnings || 'N/A'}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="w-full bg-slate-700 rounded-full h-2">
-                      <div
-                        className="bg-gradient-to-r from-teal-500 to-emerald-500 h-2 rounded-full"
-                        style={{ width: `${item.value}%` }}
-                      />
-                    </div>
-                  </div>
+                  </Card>
                 ))}
               </div>
-            </Card>
-          </TabsContent>
+            )}
 
-          {/* Platform Metrics Tab */}
-          <TabsContent value="metrics" className="space-y-6">
-            <Card className="bg-slate-800/50 border-teal-500/20 p-6">
-              <h3 className="text-xl font-semibold text-white mb-6">Real-Time Platform Statistics</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-4 bg-slate-700/50 rounded-lg">
-                  <p className="text-gray-400 text-sm mb-1">Total Users</p>
-                  <p className="text-3xl font-bold text-white">{platformStats?.total_users || 0}</p>
+            {/* Semi-Annual Data */}
+            {activeFinancialTab === 'semi-annual' && semiAnnualData && (
+              <div className="space-y-6">
+                <div className="text-sm text-gray-400 mb-4">
+                  Values in {semiAnnualData.values_in} {semiAnnualData.currency}
                 </div>
-                <div className="p-4 bg-slate-700/50 rounded-lg">
-                  <p className="text-gray-400 text-sm mb-1">Content Articles</p>
-                  <p className="text-3xl font-bold text-white">{platformStats?.total_articles || 0}</p>
-                </div>
-                <div className="p-4 bg-slate-700/50 rounded-lg">
-                  <p className="text-gray-400 text-sm mb-1">Cannabis Strains</p>
-                  <p className="text-3xl font-bold text-white">{platformStats?.total_strains || 0}</p>
-                </div>
-                <div className="p-4 bg-slate-700/50 rounded-lg">
-                  <p className="text-gray-400 text-sm mb-1">NFT Listings</p>
-                  <p className="text-3xl font-bold text-white">{platformStats?.total_nfts || 0}</p>
-                </div>
-                <div className="p-4 bg-slate-700/50 rounded-lg">
-                  <p className="text-gray-400 text-sm mb-1">Total Transactions</p>
-                  <p className="text-3xl font-bold text-white">{platformStats?.total_transactions || 0}</p>
-                </div>
-                <div className="p-4 bg-slate-700/50 rounded-lg">
-                  <p className="text-gray-400 text-sm mb-1">Crypto Assets Tracked</p>
-                  <p className="text-3xl font-bold text-white">{cryptoPrices?.crypto?.length || 0}</p>
-                </div>
-              </div>
-            </Card>
+                {semiAnnualData.periods.map((period, idx) => (
+                  <Card key={idx} className="bg-slate-800/50 border-slate-700 p-6">
+                    <div className="flex items-center justify-between mb-6">
+                      <div>
+                        <h3 className="text-2xl font-bold text-white">{period.period}</h3>
+                        <p className="text-sm text-gray-400">
+                          {formatDate(period.period_start)} - {formatDate(period.period_end)}
+                        </p>
+                      </div>
+                    </div>
 
-            <Card className="bg-slate-800/50 border-teal-500/20 p-6">
-              <h3 className="text-xl font-semibold text-white mb-6">User Engagement Metrics</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <p className="text-gray-400 text-sm mb-2">Daily Active Users (DAU)</p>
-                  <p className="text-2xl font-bold text-white mb-1">1,234</p>
-                  <p className="text-green-400 text-sm">+156% MoM</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-2">Monthly Active Users (MAU)</p>
-                  <p className="text-2xl font-bold text-white mb-1">12,345</p>
-                  <p className="text-green-400 text-sm">+189% MoM</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-2">Average Session Duration</p>
-                  <p className="text-2xl font-bold text-white mb-1">8.5 min</p>
-                  <p className="text-green-400 text-sm">+45% vs industry avg</p>
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm mb-2">Retention Rate (30-day)</p>
-                  <p className="text-2xl font-bold text-white mb-1">68%</p>
-                  <p className="text-green-400 text-sm">Industry leading</p>
-                </div>
-              </div>
-            </Card>
-          </TabsContent>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div>
+                        <div className="text-xs text-gray-400">Revenue</div>
+                        <div className="text-lg font-semibold text-white">
+                          {formatCurrency(period.revenue)}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-400">Gross Profit</div>
+                        <div className="text-lg font-semibold text-emerald-400">
+                          {formatCurrency(period.gross_profit)}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-400">Operating Income</div>
+                        <div className={`text-lg font-semibold ${period.operating_income >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                          {period.operating_income >= 0 ? '+' : ''}{formatCurrency(period.operating_income)}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-gray-400">Net Income</div>
+                        <div className={`text-lg font-semibold ${period.net_income >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                          {period.net_income >= 0 ? '+' : ''}{formatCurrency(period.net_income)}
+                        </div>
+                      </div>
+                    </div>
 
-          {/* Management Tab */}
-          <TabsContent value="team" className="space-y-6">
-            <Card className="bg-slate-800/50 border-teal-500/20 p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">Executive Management Team</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {management.map((member, idx) => (
-                  <div key={idx} className="p-6 bg-slate-700/50 rounded-lg">
-                    <h4 className="text-lg font-semibold text-white mb-1">{member.name}</h4>
-                    <p className="text-teal-400 text-sm mb-3">{member.title}</p>
-                    <p className="text-gray-400 text-sm">{member.bio}</p>
-                  </div>
+                    {period.filing_links && period.filing_links.length > 0 && (
+                      <div className="mt-4 pt-4 border-t border-slate-700">
+                        <div className="text-xs text-gray-400 mb-2">Related Filings:</div>
+                        <div className="flex gap-2 flex-wrap">
+                          {period.filing_links.map((link, linkIdx) => (
+                            <Button
+                              key={linkIdx}
+                              onClick={() => window.open(link, '_blank')}
+                              variant="outline"
+                              size="sm"
+                              className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10 text-xs"
+                            >
+                              <ExternalLink className="w-3 h-3 mr-1" />
+                              Filing {linkIdx + 1}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </Card>
                 ))}
               </div>
-            </Card>
+            )}
+
+            {/* Quarterly Data */}
+            {activeFinancialTab === 'quarterly' && quarterlyData && (
+              <div className="space-y-6">
+                <div className="text-sm text-gray-400 mb-4">
+                  Values in {quarterlyData.values_in} {quarterlyData.currency}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {quarterlyData.quarters.map((quarter) => (
+                    <Card key={quarter.quarter} className="bg-slate-800/50 border-slate-700 p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div>
+                          <h3 className="text-xl font-bold text-white">{quarter.quarter}</h3>
+                          <p className="text-sm text-gray-400">Ended {formatDate(quarter.period_end)}</p>
+                        </div>
+                        {quarter.filing_link && (
+                          <Button
+                            onClick={() => window.open(quarter.filing_link, '_blank')}
+                            variant="outline"
+                            size="sm"
+                            className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+                          >
+                            <ExternalLink className="w-3 h-3" />
+                          </Button>
+                        )}
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-400">Revenue</span>
+                          <span className="text-lg font-semibold text-white">
+                            {formatCurrency(quarter.revenue)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-400">Gross Profit</span>
+                          <span className="text-lg font-semibold text-emerald-400">
+                            {formatCurrency(quarter.gross_profit)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-400">Operating Income</span>
+                          <span className={`text-lg font-semibold ${quarter.operating_income >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                            {quarter.operating_income >= 0 ? '+' : ''}{formatCurrency(quarter.operating_income)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center border-t border-slate-700 pt-3">
+                          <span className="text-sm text-gray-400 font-semibold">Net Income</span>
+                          <span className={`text-lg font-bold ${quarter.net_income >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                            {quarter.net_income >= 0 ? '+' : ''}{formatCurrency(quarter.net_income)}
+                          </span>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
           </TabsContent>
 
-          {/* Documents Tab */}
-          <TabsContent value="documents" className="space-y-6">
+          {/* Filings Tab */}
+          <TabsContent value="filings" className="space-y-4">
+            <div className="mb-4">
+              <h3 className="text-xl font-semibold text-white mb-2">OTC Markets Disclosure & Filings</h3>
+              <p className="text-sm text-gray-400">
+                Access all quarterly reports, annual reports, and supplemental information
+              </p>
+            </div>
+            {filings.map((filing, idx) => (
+              <Card key={idx} className="bg-slate-800/50 border-slate-700 hover:border-teal-500/50 p-6 transition-all">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        filing.type === 'Annual' ? 'bg-teal-500/20 text-teal-400' :
+                        filing.type === 'Quarterly' ? 'bg-purple-500/20 text-purple-400' :
+                        'bg-blue-500/20 text-blue-400'
+                      }`}>
+                        {filing.type}
+                      </span>
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <Calendar className="w-3 h-3" />
+                        Published: {formatDate(filing.publish_date)}
+                      </div>
+                    </div>
+                    <h4 className="text-lg font-semibold text-white mb-1">{filing.title}</h4>
+                    <p className="text-sm text-gray-400">Period Ended: {formatDate(filing.period_end)}</p>
+                  </div>
+                  <Button
+                    onClick={() => window.open(filing.link, '_blank')}
+                    variant="outline"
+                    size="sm"
+                    className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10 flex-shrink-0"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    View
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </TabsContent>
+
+          {/* Company Tab */}
+          <TabsContent value="company" className="space-y-6">
             <Card className="bg-slate-800/50 border-teal-500/20 p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">SEC Filings & Reports</h2>
+              <h2 className="text-2xl font-bold text-white mb-6">Company Information</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <p className="text-gray-400 text-sm mb-1">Company Name</p>
+                  <p className="text-white font-semibold">{companyInfo?.name}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm mb-1">Ticker Symbol</p>
+                  <p className="text-white font-semibold">{companyInfo?.ticker}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm mb-1">Exchange</p>
+                  <p className="text-white font-semibold">{companyInfo?.exchange}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm mb-1">Sector</p>
+                  <p className="text-white font-semibold">{companyInfo?.sector}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm mb-1">Fiscal Year End</p>
+                  <p className="text-white font-semibold">{companyInfo?.fiscal_year_end}</p>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm mb-1">Headquarters</p>
+                  <p className="text-white font-semibold">{companyInfo?.headquarters}</p>
+                </div>
+              </div>
+
+              {/* Verification Badges */}
+              {companyInfo?.verified_profile && (
+                <div className="mt-6 pt-6 border-t border-slate-700">
+                  <h3 className="text-sm font-semibold text-white mb-3">Verification Status</h3>
+                  <div className="flex gap-4 flex-wrap">
+                    <div className="flex items-center gap-2 bg-emerald-500/10 px-3 py-2 rounded-lg">
+                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
+                      <span className="text-sm text-emerald-400">Company Verified Profile</span>
+                    </div>
+                    {companyInfo?.transfer_agent_verified && (
+                      <div className="flex items-center gap-2 bg-blue-500/10 px-3 py-2 rounded-lg">
+                        <div className="w-2 h-2 rounded-full bg-blue-400"></div>
+                        <span className="text-sm text-blue-400">Transfer Agent Verified</span>
+                      </div>
+                    )}
+                  </div>
+                  {companyInfo?.profile_verified_date && (
+                    <p className="text-xs text-gray-500 mt-2">
+                      Profile verified: {companyInfo.profile_verified_date}
+                    </p>
+                  )}
+                </div>
+              )}
+            </Card>
+
+            {/* Contact & Links */}
+            <Card className="bg-slate-800/50 border-teal-500/20 p-8">
+              <h2 className="text-2xl font-bold text-white mb-6">Investor Resources</h2>
               <div className="space-y-3">
-                <a href="https://www.otcmarkets.com/stock/NUGL/financials" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors">
-                  <div className="flex items-center gap-3">
-                    <FileText className="w-5 h-5 text-teal-400" />
-                    <div>
-                      <p className="text-white font-medium">View on OTC Markets</p>
-                      <p className="text-gray-400 text-sm">Live financial data and filings</p>
-                    </div>
-                  </div>
-                  <ExternalLink className="w-5 h-5 text-gray-400" />
-                </a>
-                <div className="flex items-center justify-between p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer">
-                  <div className="flex items-center gap-3">
-                    <Download className="w-5 h-5 text-teal-400" />
-                    <div>
-                      <p className="text-white font-medium">Q4 2024 Earnings Report</p>
-                      <p className="text-gray-400 text-sm">Released: December 2024</p>
-                    </div>
-                  </div>
-                  <Download className="w-5 h-5 text-gray-400" />
-                </div>
-                <div className="flex items-center justify-between p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer">
-                  <div className="flex items-center gap-3">
-                    <FileText className="w-5 h-5 text-teal-400" />
-                    <div>
-                      <p className="text-white font-medium">2024 Annual Report</p>
-                      <p className="text-gray-400 text-sm">Full year financials</p>
-                    </div>
-                  </div>
-                  <Download className="w-5 h-5 text-gray-400" />
-                </div>
-                <div className="flex items-center justify-between p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer">
-                  <div className="flex items-center gap-3">
-                    <FileText className="w-5 h-5 text-teal-400" />
-                    <div>
-                      <p className="text-white font-medium">Investor Presentation</p>
-                      <p className="text-gray-400 text-sm">Company overview deck</p>
-                    </div>
-                  </div>
-                  <Download className="w-5 h-5 text-gray-400" />
-                </div>
-              </div>
-            </Card>
-
-            <Card className="bg-slate-800/50 border-teal-500/20 p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">Contact Investor Relations</h2>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-teal-400" />
-                  <div>
-                    <p className="text-gray-400 text-sm">Email</p>
-                    <p className="text-white">ir@nugl.com</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-teal-400" />
-                  <div>
-                    <p className="text-gray-400 text-sm">Phone</p>
-                    <p className="text-white">+1 (555) 123-4567</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Globe className="w-5 h-5 text-teal-400" />
-                  <div>
-                    <p className="text-gray-400 text-sm">Website</p>
-                    <a href="https://nugl.com" className="text-teal-400 hover:text-teal-300">https://nugl.com</a>
-                  </div>
-                </div>
+                <Button
+                  onClick={() => window.open(companyInfo?.website, '_blank')}
+                  variant="outline"
+                  className="w-full justify-start border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Company Website
+                </Button>
+                <Button
+                  onClick={() => window.open(companyInfo?.otc_profile, '_blank')}
+                  variant="outline"
+                  className="w-full justify-start border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  OTC Markets Profile
+                </Button>
+                <Button
+                  onClick={() => window.open(companyInfo?.otc_financials, '_blank')}
+                  variant="outline"
+                  className="w-full justify-start border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Live Financials on OTC Markets
+                </Button>
+                <Button
+                  onClick={() => window.open(companyInfo?.otc_disclosure, '_blank')}
+                  variant="outline"
+                  className="w-full justify-start border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Disclosure Documents
+                </Button>
               </div>
             </Card>
           </TabsContent>
