@@ -69,10 +69,11 @@ export default function PressRoomPage() {
     return new Date(2018, 0, 1);
   };
 
-  const formatDate = (dateString) => {
+  const formatDate = (date) => {
     try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', {
+      // If it's already a Date object, use it directly
+      const dateObj = date instanceof Date ? date : new Date(date);
+      return dateObj.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
         day: 'numeric'
