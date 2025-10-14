@@ -585,3 +585,44 @@ class OTCFinancialsService:
             "transfer_agent_verified": True,
             "profile_verified_date": "05/2025"
         }
+    
+    def get_live_quote(self) -> Dict[str, Any]:
+        """Get live stock quote data from OTC Markets
+        Note: This returns mock data. In production, this would fetch from OTC Markets API or scrape the quote page.
+        """
+        import random
+        from datetime import datetime
+        
+        # Base price with small random variations to simulate live updates
+        base_price = 0.0011
+        price_variation = random.uniform(-0.00005, 0.00005)
+        current_price = round(base_price + price_variation, 6)
+        prev_close = 0.00103
+        
+        change = current_price - prev_close
+        change_percent = (change / prev_close) * 100
+        
+        return {
+            "ticker": "NUGL",
+            "name": "NUGL, Inc.",
+            "price": current_price,
+            "change": round(change, 6),
+            "change_percent": round(change_percent, 2),
+            "bid": round(current_price - 0.0001, 4),
+            "ask": round(current_price, 4),
+            "bid_size": random.randint(1, 10),
+            "ask_size": random.randint(1, 10),
+            "open": 0.001,
+            "high": 0.0011,
+            "low": 0.001,
+            "prev_close": prev_close,
+            "volume": random.randint(100000, 150000),
+            "avg_volume_30d": 654310,
+            "week_52_high": 0.0078,
+            "week_52_low": 0.0006,
+            "market_cap": "5.2M",
+            "dividend": "N/A",
+            "dividend_yield": "N/A",
+            "last_updated": datetime.now().strftime("%I:%M%p %m/%d/%Y"),
+            "market_status": "Market Closed" if datetime.now().hour < 9 or datetime.now().hour >= 16 else "Market Open"
+        }
