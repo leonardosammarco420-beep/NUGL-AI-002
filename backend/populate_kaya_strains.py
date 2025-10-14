@@ -20,7 +20,7 @@ kaya_strains = [
         "effects": ["Energetic", "Creative", "Sociable"],
         "flavors": ["Lemon", "Citrus", "Skunk"],
         "description": "A classic Jamaican sativa with energizing effects perfect for daytime use.",
-        "image": "https://images.unsplash.com/photo-1536964310528-e47dd655ecf3?w=400",
+        "image": "https://images.unsplash.com/photo-1560718524-11fafe51a2e4?w=500&h=500&fit=crop",
         "source": "Kaya Herb House",
         "rating": 4.6
     },
