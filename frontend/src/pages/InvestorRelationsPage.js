@@ -312,6 +312,220 @@ export default function InvestorRelationsPage() {
                           </div>
                         </div>
                       </div>
+
+                      {/* Balance Sheet */}
+                      {yearData.balance_sheet && (
+                        <div className="mt-6 pt-4 border-t border-slate-700">
+                          <h4 className="text-lg font-semibold text-white mb-3">Balance Sheet</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {/* Assets */}
+                            <div className="bg-slate-900/50 rounded-lg p-4">
+                              <h5 className="text-sm font-semibold text-emerald-400 mb-3">Assets</h5>
+                              <div className="space-y-2">
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Cash & Equivalents</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.current_assets.cash_and_equivalents)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Accounts Receivable</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.current_assets.accounts_receivable)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Inventory</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.current_assets.inventory)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm border-t border-slate-700 pt-2">
+                                  <span className="text-gray-300 font-semibold">Current Assets</span>
+                                  <span className="text-white font-semibold">{formatCurrency(yearData.balance_sheet.current_assets.total_current_assets)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm mt-3">
+                                  <span className="text-gray-400">PP&E</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.non_current_assets.property_plant_equipment)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Intangibles</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.non_current_assets.intangible_assets)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Goodwill</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.non_current_assets.goodwill)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm border-t border-slate-700 pt-2 mt-2">
+                                  <span className="text-emerald-400 font-bold">Total Assets</span>
+                                  <span className="text-emerald-400 font-bold">{formatCurrency(yearData.balance_sheet.total_assets)}</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Liabilities */}
+                            <div className="bg-slate-900/50 rounded-lg p-4">
+                              <h5 className="text-sm font-semibold text-red-400 mb-3">Liabilities</h5>
+                              <div className="space-y-2">
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Accounts Payable</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.current_liabilities.accounts_payable)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Accrued Expenses</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.current_liabilities.accrued_expenses)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Short-term Debt</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.current_liabilities.short_term_debt)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm border-t border-slate-700 pt-2">
+                                  <span className="text-gray-300 font-semibold">Current Liabilities</span>
+                                  <span className="text-white font-semibold">{formatCurrency(yearData.balance_sheet.current_liabilities.total_current_liabilities)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm mt-3">
+                                  <span className="text-gray-400">Long-term Debt</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.non_current_liabilities.long_term_debt)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Other Liabilities</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.non_current_liabilities.other_liabilities)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm border-t border-slate-700 pt-2 mt-2">
+                                  <span className="text-red-400 font-bold">Total Liabilities</span>
+                                  <span className="text-red-400 font-bold">{formatCurrency(yearData.balance_sheet.total_liabilities)}</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Equity */}
+                            <div className="bg-slate-900/50 rounded-lg p-4">
+                              <h5 className="text-sm font-semibold text-blue-400 mb-3">Stockholders' Equity</h5>
+                              <div className="space-y-2">
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Common Stock</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.stockholders_equity.common_stock)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Paid-in Capital</span>
+                                  <span className="text-white">{formatCurrency(yearData.balance_sheet.stockholders_equity.additional_paid_in_capital)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Retained Earnings</span>
+                                  <span className={yearData.balance_sheet.stockholders_equity.retained_earnings >= 0 ? 'text-white' : 'text-red-400'}>
+                                    {formatCurrency(yearData.balance_sheet.stockholders_equity.retained_earnings)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between text-sm border-t border-slate-700 pt-2 mt-4">
+                                  <span className="text-blue-400 font-bold">Total Equity</span>
+                                  <span className="text-blue-400 font-bold">{formatCurrency(yearData.balance_sheet.stockholders_equity.total_equity)}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Cash Flow Statement */}
+                      {yearData.cash_flow && (
+                        <div className="mt-6 pt-4 border-t border-slate-700">
+                          <h4 className="text-lg font-semibold text-white mb-3">Cash Flow Statement</h4>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {/* Operating Activities */}
+                            <div className="bg-slate-900/50 rounded-lg p-4">
+                              <h5 className="text-sm font-semibold text-teal-400 mb-3">Operating Activities</h5>
+                              <div className="space-y-2">
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Net Income</span>
+                                  <span className={yearData.cash_flow.operating_activities.net_income >= 0 ? 'text-white' : 'text-red-400'}>
+                                    {formatCurrency(yearData.cash_flow.operating_activities.net_income)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Depreciation & Amortization</span>
+                                  <span className="text-white">{formatCurrency(yearData.cash_flow.operating_activities.depreciation_amortization)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Working Capital Changes</span>
+                                  <span className={yearData.cash_flow.operating_activities.changes_working_capital >= 0 ? 'text-white' : 'text-red-400'}>
+                                    {formatCurrency(yearData.cash_flow.operating_activities.changes_working_capital)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between text-sm border-t border-slate-700 pt-2 mt-2">
+                                  <span className="text-teal-400 font-bold">Net Cash from Operations</span>
+                                  <span className={`font-bold ${yearData.cash_flow.operating_activities.net_cash_operating >= 0 ? 'text-teal-400' : 'text-red-400'}`}>
+                                    {formatCurrency(yearData.cash_flow.operating_activities.net_cash_operating)}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Investing Activities */}
+                            <div className="bg-slate-900/50 rounded-lg p-4">
+                              <h5 className="text-sm font-semibold text-purple-400 mb-3">Investing Activities</h5>
+                              <div className="space-y-2">
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Capital Expenditures</span>
+                                  <span className="text-red-400">{formatCurrency(yearData.cash_flow.investing_activities.capital_expenditures)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Acquisitions</span>
+                                  <span className="text-white">{formatCurrency(yearData.cash_flow.investing_activities.acquisitions)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Other Investing</span>
+                                  <span className="text-white">{formatCurrency(yearData.cash_flow.investing_activities.other_investing)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm border-t border-slate-700 pt-2 mt-2">
+                                  <span className="text-purple-400 font-bold">Net Cash from Investing</span>
+                                  <span className={`font-bold ${yearData.cash_flow.investing_activities.net_cash_investing >= 0 ? 'text-purple-400' : 'text-red-400'}`}>
+                                    {formatCurrency(yearData.cash_flow.investing_activities.net_cash_investing)}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Financing Activities */}
+                            <div className="bg-slate-900/50 rounded-lg p-4">
+                              <h5 className="text-sm font-semibold text-blue-400 mb-3">Financing Activities</h5>
+                              <div className="space-y-2">
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Debt Proceeds</span>
+                                  <span className="text-emerald-400">{formatCurrency(yearData.cash_flow.financing_activities.debt_proceeds)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Debt Repayment</span>
+                                  <span className="text-red-400">{formatCurrency(yearData.cash_flow.financing_activities.debt_repayment)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                  <span className="text-gray-400">Equity Issuance</span>
+                                  <span className="text-emerald-400">{formatCurrency(yearData.cash_flow.financing_activities.equity_issuance)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm border-t border-slate-700 pt-2 mt-2">
+                                  <span className="text-blue-400 font-bold">Net Cash from Financing</span>
+                                  <span className={`font-bold ${yearData.cash_flow.financing_activities.net_cash_financing >= 0 ? 'text-blue-400' : 'text-red-400'}`}>
+                                    {formatCurrency(yearData.cash_flow.financing_activities.net_cash_financing)}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Cash Summary */}
+                          <div className="mt-4 bg-gradient-to-r from-teal-500/10 to-emerald-500/10 rounded-lg p-4 border border-teal-500/30">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                              <div className="flex justify-between">
+                                <span className="text-gray-400">Net Change in Cash</span>
+                                <span className={`font-bold ${yearData.cash_flow.net_change_cash >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                                  {yearData.cash_flow.net_change_cash >= 0 ? '+' : ''}{formatCurrency(yearData.cash_flow.net_change_cash)}
+                                </span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-400">Beginning Cash</span>
+                                <span className="text-white font-semibold">{formatCurrency(yearData.cash_flow.beginning_cash)}</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-400">Ending Cash</span>
+                                <span className="text-teal-400 font-bold">{formatCurrency(yearData.cash_flow.ending_cash)}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </Card>
                 ))}
