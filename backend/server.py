@@ -1119,35 +1119,90 @@ async def calculate_portfolio_value(holdings: List[dict], user_id: str = Depends
     return result
 
 @api_router.get("/ticker")
-async def get_live_ticker():
-    """Get live ticker data for crypto and cannabis stocks"""
+async def get_live_ticker(category: str = 'all'):
+    """Get live ticker data based on news category"""
+    import random
+    
     try:
-        # Get crypto prices
-        crypto_symbols = ['bitcoin', 'ethereum', 'solana']
-        crypto_prices = await crypto_price_service.get_live_prices(crypto_symbols)
-        
         ticker_data = []
         
-        # Add crypto data
-        if 'crypto' in crypto_prices and isinstance(crypto_prices['crypto'], list):
-            for coin in crypto_prices['crypto']:
-                ticker_data.append({
-                    'symbol': coin['symbol'],
-                    'price': coin['price'],
-                    'change': coin.get('change_24h', 0),
-                    'type': 'crypto'
-                })
+        # Get crypto prices for crypto/all categories
+        if category in ['crypto', 'all']:
+            crypto_symbols = ['bitcoin', 'ethereum', 'solana']
+            crypto_prices = await crypto_price_service.get_live_prices(crypto_symbols)
+            
+            if 'crypto' in crypto_prices and isinstance(crypto_prices['crypto'], list):
+                for coin in crypto_prices['crypto']:
+                    ticker_data.append({
+                        'symbol': coin['symbol'],
+                        'price': coin['price'],
+                        'change': coin.get('change_24h', 0),
+                        'type': 'crypto'
+                    })
         
-        # Add cannabis stock data (NUGL, AUXLY, TLRY, CGC)
-        # Note: These are simulated for now - integrate with real stock API for production
-        cannabis_stocks = [
-            {'symbol': 'NUGL', 'price': 0.12, 'change': 8.5, 'type': 'stock'},
-            {'symbol': 'AUXLY', 'price': 0.045, 'change': -3.2, 'type': 'stock'},
-            {'symbol': 'TLRY', 'price': 3.45, 'change': -2.1, 'type': 'stock'},
-            {'symbol': 'CGC', 'price': 7.23, 'change': 3.8, 'type': 'stock'},
-        ]
+        # Cannabis stocks (for cannabis category or all)
+        if category in ['cannabis', 'all']:
+            cannabis_stocks = [
+                {'symbol': 'TLRY', 'name': 'Tilray Brands', 'price': 1.47, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
+                {'symbol': 'CGC', 'name': 'Canopy Growth', 'price': 3.12, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
+                {'symbol': 'SNDL', 'name': 'Sundial Growers', 'price': 1.89, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
+                {'symbol': 'ACB', 'name': 'Aurora Cannabis', 'price': 4.56, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
+                {'symbol': 'CRON', 'name': 'Cronos Group', 'price': 2.34, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
+                {'symbol': 'NUGL', 'name': 'NUGL Inc.', 'price': 0.0011, 'change': round(random.uniform(-10, 10), 2), 'type': 'cannabis'},
+            ]
+            ticker_data.extend(cannabis_stocks)
         
-        ticker_data.extend(cannabis_stocks)
+        # AI stocks (for AI category)
+        if category == 'ai':
+            ai_stocks = [
+                {'symbol': 'NVDA', 'name': 'NVIDIA', 'price': 876.50, 'change': round(random.uniform(-3, 3), 2), 'type': 'ai'},
+                {'symbol': 'MSFT', 'name': 'Microsoft', 'price': 428.90, 'change': round(random.uniform(-2, 2), 2), 'type': 'ai'},
+                {'symbol': 'GOOGL', 'name': 'Alphabet', 'price': 168.20, 'change': round(random.uniform(-2, 2), 2), 'type': 'ai'},
+                {'symbol': 'ORCL', 'name': 'Oracle', 'price': 142.80, 'change': round(random.uniform(-2, 2), 2), 'type': 'ai'},
+                {'symbol': 'META', 'name': 'Meta Platforms', 'price': 523.40, 'change': round(random.uniform(-2, 2), 2), 'type': 'ai'},
+                {'symbol': 'AMD', 'name': 'AMD', 'price': 127.30, 'change': round(random.uniform(-3, 3), 2), 'type': 'ai'},
+                {'symbol': 'PLTR', 'name': 'Palantir', 'price': 68.90, 'change': round(random.uniform(-4, 4), 2), 'type': 'ai'},
+            ]
+            ticker_data.extend(ai_stocks)
+        
+        # Market indices (for market category)
+        if category == 'market':
+            indices = [
+                {'symbol': 'SPX', 'name': 'S&P 500', 'price': 5870.20, 'change': round(random.uniform(-1, 1), 2), 'type': 'index'},
+                {'symbol': 'DJI', 'name': 'Dow Jones', 'price': 42450.30, 'change': round(random.uniform(-1, 1), 2), 'type': 'index'},
+                {'symbol': 'IXIC', 'name': 'NASDAQ', 'price': 18380.45, 'change': round(random.uniform(-1.5, 1.5), 2), 'type': 'index'},
+                {'symbol': 'FTSE', 'name': 'FTSE 100', 'price': 8240.10, 'change': round(random.uniform(-0.8, 0.8), 2), 'type': 'index'},
+                {'symbol': 'GOLD', 'name': 'Gold', 'price': 2685.40, 'change': round(random.uniform(-1, 1), 2), 'type': 'commodity'},
+                {'symbol': 'OIL', 'name': 'Crude Oil', 'price': 72.80, 'change': round(random.uniform(-2, 2), 2), 'type': 'commodity'},
+            ]
+            ticker_data.extend(indices)
+        
+        # International - Hong Kong stocks (for international category)
+        if category == 'international':
+            hk_stocks = [
+                {'symbol': 'BABA', 'name': 'Alibaba', 'price': 108.50, 'change': round(random.uniform(-3, 3), 2), 'type': 'hk'},
+                {'symbol': '0700.HK', 'name': 'Tencent', 'price': 425.60, 'change': round(random.uniform(-2, 2), 2), 'type': 'hk'},
+                {'symbol': 'JD', 'name': 'JD.com', 'price': 38.70, 'change': round(random.uniform(-3, 3), 2), 'type': 'hk'},
+                {'symbol': 'BIDU', 'name': 'Baidu', 'price': 92.40, 'change': round(random.uniform(-2, 2), 2), 'type': 'hk'},
+                {'symbol': 'NIO', 'name': 'NIO Inc.', 'price': 5.20, 'change': round(random.uniform(-4, 4), 2), 'type': 'hk'},
+                {'symbol': 'BEKE', 'name': 'KE Holdings', 'price': 18.90, 'change': round(random.uniform(-3, 3), 2), 'type': 'hk'},
+                {'symbol': 'PDD', 'name': 'PDD Holdings', 'price': 115.80, 'change': round(random.uniform(-3, 3), 2), 'type': 'hk'},
+            ]
+            ticker_data.extend(hk_stocks)
+        
+        # Jamaica Stock Exchange (for jamaica category)
+        if category == 'jamaica':
+            jse_stocks = [
+                {'symbol': 'NCBFG', 'name': 'NCB Financial Group', 'price': 95.00, 'change': round(random.uniform(-2, 2), 2), 'type': 'jse'},
+                {'symbol': 'JMMB', 'name': 'JMMB Group', 'price': 26.50, 'change': round(random.uniform(-1.5, 1.5), 2), 'type': 'jse'},
+                {'symbol': 'SJ', 'name': 'Sagicor Group Jamaica', 'price': 62.00, 'change': round(random.uniform(-1, 1), 2), 'type': 'jse'},
+                {'symbol': 'LASM', 'name': 'Lasco Manufacturing', 'price': 4.85, 'change': round(random.uniform(-2, 2), 2), 'type': 'jse'},
+                {'symbol': 'WIG', 'name': 'Wigton Windfarm', 'price': 0.72, 'change': round(random.uniform(-3, 3), 2), 'type': 'jse'},
+                {'symbol': 'JETCON', 'name': 'Jetcon Corporation', 'price': 3.20, 'change': round(random.uniform(-2, 2), 2), 'type': 'jse'},
+                {'symbol': 'SVL', 'name': 'Supreme Ventures', 'price': 21.50, 'change': round(random.uniform(-1.5, 1.5), 2), 'type': 'jse'},
+                {'symbol': 'MAILPAC', 'name': 'Mailpac Group', 'price': 5.10, 'change': round(random.uniform(-2, 2), 2), 'type': 'jse'},
+            ]
+            ticker_data.extend(jse_stocks)
         
         return {'ticker': ticker_data}
     except Exception as e:
