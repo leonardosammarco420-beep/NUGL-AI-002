@@ -33,6 +33,7 @@ kaya_strains = [
         "flavors": ["Citrus", "Diesel", "Lemon"],
         "description": "Uplifting hybrid with potent effects and citrus diesel aroma.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1536964310528-e47dd655ecf3?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     {
@@ -44,6 +45,7 @@ kaya_strains = [
         "flavors": ["Citrus", "Lemon", "Earthy"],
         "description": "Smooth sativa with balanced effects, great for creativity.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1605941225168-11f7f723d87a?w=500&h=500&fit=crop",
         "rating": 4.5
     },
     {
@@ -55,6 +57,7 @@ kaya_strains = [
         "flavors": ["Grapefruit", "Citrus", "Diesel"],
         "description": "Euphoric sativa with grapefruit notes and creative inspiration.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1566308410717-277e31c9c541?w=500&h=500&fit=crop",
         "rating": 4.6
     },
     {
@@ -66,6 +69,7 @@ kaya_strains = [
         "flavors": ["Earthy", "Citrus", "Tropical"],
         "description": "Potent Jamaican hybrid with tropical flavors and strong effects.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1587540600634-0cc4a665262b?w=500&h=500&fit=crop",
         "rating": 4.8
     },
     {
@@ -77,6 +81,7 @@ kaya_strains = [
         "flavors": ["Sweet", "Citrus", "Tropical"],
         "description": "Signature Kaya strain with sweet tropical notes and uplifting effects.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1610896922344-9c0066346a6f?w=500&h=500&fit=crop",
         "rating": 4.8
     },
     {
@@ -88,6 +93,7 @@ kaya_strains = [
         "flavors": ["Citrus", "Wood", "Orange"],
         "description": "Smooth Jamaican hybrid with citrus wood flavors.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1560718524-11fafe51a2e4?w=500&h=500&fit=crop",
         "rating": 4.6
     },
     
@@ -101,6 +107,7 @@ kaya_strains = [
         "flavors": ["Citrus", "Lemon", "Earthy"],
         "description": "Zesty hybrid with strong lemon flavor and creative boost.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1536964310528-e47dd655ecf3?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     {
@@ -112,6 +119,7 @@ kaya_strains = [
         "flavors": ["Lemon", "Pungent", "Earthy"],
         "description": "Balanced hybrid with pungent lemon notes and dual effects.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1605941225168-11f7f723d87a?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     {
@@ -123,6 +131,7 @@ kaya_strains = [
         "flavors": ["Pineapple", "Lavender", "Strawberry"],
         "description": "Complex hybrid with fruity flavors and well-rounded effects.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1566308410717-277e31c9c541?w=500&h=500&fit=crop",
         "rating": 4.9
     },
     {
@@ -134,6 +143,7 @@ kaya_strains = [
         "flavors": ["Mango", "Sweet", "Earthy"],
         "description": "Social hybrid with delicious mango sweetness.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1587540600634-0cc4a665262b?w=500&h=500&fit=crop",
         "rating": 4.6
     },
     {
@@ -145,6 +155,7 @@ kaya_strains = [
         "flavors": ["Earthy", "Berry", "Pungent"],
         "description": "Ocho Rios special with berry notes and uplifting vibes.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1610896922344-9c0066346a6f?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     {
@@ -156,6 +167,7 @@ kaya_strains = [
         "flavors": ["Grape", "Mint", "Pine"],
         "description": "Refreshing hybrid with grape mint flavors and chill effects.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1560718524-11fafe51a2e4?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     {
@@ -167,6 +179,7 @@ kaya_strains = [
         "flavors": ["Nutty", "Sweet", "Earthy"],
         "description": "Classic Jamaican strain with nutty sweet profile.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1536964310528-e47dd655ecf3?w=500&h=500&fit=crop",
         "rating": 4.5
     },
     {
@@ -178,6 +191,7 @@ kaya_strains = [
         "flavors": ["Sweet", "Earthy", "Grape"],
         "description": "Potent purple hybrid with grape sweetness and energizing focus.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1605941225168-11f7f723d87a?w=500&h=500&fit=crop",
         "rating": 4.8
     },
     {
@@ -189,6 +203,7 @@ kaya_strains = [
         "flavors": ["Citrus", "Pine", "Earthy"],
         "description": "Focusing hybrid with pine citrus notes.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1566308410717-277e31c9c541?w=500&h=500&fit=crop",
         "rating": 4.6
     },
     {
@@ -200,6 +215,7 @@ kaya_strains = [
         "flavors": ["Berry", "Lavender", "Earthy"],
         "description": "Chem Dog variant with purple berry lavender notes.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1587540600634-0cc4a665262b?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     {
@@ -211,6 +227,7 @@ kaya_strains = [
         "flavors": ["Earthy", "Berry", "Pungent"],
         "description": "Top-shelf kush with earthy berry profile.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1610896922344-9c0066346a6f?w=500&h=500&fit=crop",
         "rating": 4.8
     },
     {
@@ -222,6 +239,7 @@ kaya_strains = [
         "flavors": ["Cheese", "Skunk", "Berry"],
         "description": "Unique popcorn strain with cheesy berry notes.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1560718524-11fafe51a2e4?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     
@@ -235,6 +253,7 @@ kaya_strains = [
         "flavors": ["Grape", "Sweet", "Earthy"],
         "description": "Deeply relaxing grape strain perfect for evening use.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1536964310528-e47dd655ecf3?w=500&h=500&fit=crop",
         "rating": 4.8
     },
     {
@@ -246,6 +265,7 @@ kaya_strains = [
         "flavors": ["Earthy", "Pungent", "Pine"],
         "description": "Famous strain with powerful glue-like potency and pine notes.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1605941225168-11f7f723d87a?w=500&h=500&fit=crop",
         "rating": 4.9
     },
     {
@@ -257,6 +277,7 @@ kaya_strains = [
         "flavors": ["Pine", "Pungent", "Earthy"],
         "description": "Strong hybrid with landlord-quality pine punch.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1566308410717-277e31c9c541?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     {
@@ -268,6 +289,7 @@ kaya_strains = [
         "flavors": ["Flowers", "Sweet", "Earthy"],
         "description": "Wild Jamaican hybrid with floral sweetness and munchies.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1587540600634-0cc4a665262b?w=500&h=500&fit=crop",
         "rating": 4.6
     },
     {
@@ -279,6 +301,7 @@ kaya_strains = [
         "flavors": ["Earthy", "Pine", "Sweet"],
         "description": "Classic indica with out-of-this-world sedative effects.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1610896922344-9c0066346a6f?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     {
@@ -290,6 +313,7 @@ kaya_strains = [
         "flavors": ["Lemon", "Diesel", "Citrus"],
         "description": "Candy-like indica with lemon diesel sweetness.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1560718524-11fafe51a2e4?w=500&h=500&fit=crop",
         "rating": 4.6
     },
     {
@@ -301,6 +325,7 @@ kaya_strains = [
         "flavors": ["Earthy", "Pungent", "Pine"],
         "description": "Potent indica with strong pine punch and sleepy vibes.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1536964310528-e47dd655ecf3?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     {
@@ -312,6 +337,7 @@ kaya_strains = [
         "flavors": ["Earthy", "Sweet", "Pungent"],
         "description": "Heavy-hitting indica that knocks you out like a hammer.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1605941225168-11f7f723d87a?w=500&h=500&fit=crop",
         "rating": 4.8
     },
     {
@@ -323,6 +349,7 @@ kaya_strains = [
         "flavors": ["Earthy", "Mango", "Lavender"],
         "description": "Ultra-potent indica at 27% THC with mango lavender notes.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1566308410717-277e31c9c541?w=500&h=500&fit=crop",
         "rating": 4.9
     },
     {
@@ -334,6 +361,7 @@ kaya_strains = [
         "flavors": ["Earthy", "Wood", "Sweet"],
         "description": "Medical strain with 1:2 THC:CBD ratio for therapeutic use.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1587540600634-0cc4a665262b?w=500&h=500&fit=crop",
         "rating": 4.7
     },
     {
@@ -345,6 +373,7 @@ kaya_strains = [
         "flavors": ["Earthy", "Wood", "Sweet"],
         "description": "High CBD strain for pain, anxiety, epilepsy, and MS relief.",
         "source": "Kaya Herb House",
+        "image": "https://images.unsplash.com/photo-1610896922344-9c0066346a6f?w=500&h=500&fit=crop",
         "rating": 4.8
     }
 ]
