@@ -135,6 +135,47 @@ export default function DispensariesPage() {
         google_maps_link: 'https://www.google.com/maps/place/STIIIZY+DTLA/@34.0407001,-118.2489651,17z'
       }
     ],
+    thailand: [
+      {
+        id: 'greenhouse-bangkok',
+        name: 'Greenhouse Seeds Bangkok',
+        location: 'Bangkok, Thailand',
+        address: '46/202 Nuanchan Road, Bueng Kum, Bangkok 10230',
+        phone: '+66 2 XXX XXXX',
+        website: 'https://greenhousethailand.com',
+        hours: 'Mon-Sun: 10:00 AM - 10:00 PM',
+        description: 'Official Green House base in Thailand, blending Amsterdam cannabis expertise with Thailand\'s legal cannabis market.',
+        featured: true,
+        rating: 4.7,
+        google_maps_link: 'https://www.google.com/maps/place/Green+House+Bangkok/@13.8081929,100.6514573,17z'
+      },
+      {
+        id: 'cookies-thailand',
+        name: 'Cookies Thailand',
+        location: 'Bangkok, Thailand',
+        address: '51/2 Soi Ruamrudee, Lumphini, Pathum Wan, Bangkok 10330',
+        phone: '+66 XX XXX XXXX',
+        website: 'https://www.cookiesth.com',
+        hours: 'Mon-Sun: 11:00 AM - 9:00 PM',
+        description: 'First Cookies dispensary in Asia featuring premium, locally grown Cookies strains and exclusive merchandise.',
+        featured: true,
+        rating: 4.8,
+        google_maps_link: 'https://www.google.com/maps/place/Cookies+Thailand/@13.7406773,100.5462513,17z'
+      },
+      {
+        id: 'siam-green-silom',
+        name: 'Siam Green Cannabis Co. - Silom',
+        location: 'Bangkok, Thailand',
+        address: '18 Silom Road, Bangkok 10500',
+        phone: '+66 96 893 0545',
+        website: 'https://siamgreenco.com',
+        hours: 'Mon-Sun: 11:00 AM - 3:00 AM',
+        description: 'Premium cannabis lounge near Sala Daeng BTS featuring smoke lounge, co-working space, and private rooms.',
+        featured: true,
+        rating: 4.6,
+        google_maps_link: 'https://www.google.com/maps/place/Siam+Green+Cannabis+Co/@13.7291667,100.5324444,17z'
+      }
+    ],
     canada: [
       {
         id: 'tokyo-smoke-toronto',
