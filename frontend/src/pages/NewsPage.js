@@ -82,7 +82,9 @@ export default function NewsPage() {
 
   const fetchTickerData = async () => {
     try {
-      const response = await axios.get(`${API}/ticker`);
+      const response = await axios.get(`${API}/ticker`, {
+        params: { category }
+      });
       if (response.data.ticker) {
         setLiveTickerData(response.data.ticker);
       }
