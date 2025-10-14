@@ -51,11 +51,15 @@ export default function PressRoomPage() {
     if (release.link.includes('benzinga.com')) {
       urlDateMatch = release.link.match(/\/(\d{2})\/(\d{2})\/\d+/);
       if (urlDateMatch) {
-        const year = parseInt(urlDateMatch[1]);
-        const month = parseInt(urlDateMatch[2]);
+        const year = parseInt(urlDateMatch[1], 10);
+        const month = parseInt(urlDateMatch[2], 10);
         // Convert 2-digit year to full year (assume 2000s)
         const fullYear = 2000 + year;
-        return new Date(fullYear, month - 1, 1);
+        // Create date with correct month (0-indexed) and year
+        const dateObj = new Date(fullYear, month - 1, 1);
+        // Log for debugging
+        console.log(`Benzinga date parsed: YY=${year}, MM=${month}, FullYear=${fullYear}, Date=${dateObj.toLocaleDateString()}`);
+        return dateObj;
       }
     }
     
