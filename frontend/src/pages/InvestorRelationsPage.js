@@ -172,23 +172,28 @@ export default function InvestorRelationsPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-700">
-                <div className="flex items-center gap-2">
-                  <div className={`w-2 h-2 rounded-full ${liveQuote.market_status === 'Market Open' ? 'bg-emerald-400 animate-pulse' : 'bg-gray-500'}`}></div>
-                  <span className="text-xs text-gray-400">{liveQuote.market_status}</span>
+              <div className="mt-4 pt-4 border-t border-slate-700">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className={`w-2 h-2 rounded-full ${liveQuote.market_status === 'Market Open' ? 'bg-emerald-400 animate-pulse' : 'bg-gray-500'}`}></div>
+                    <span className="text-xs text-gray-400">{liveQuote.market_status}</span>
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    Last Updated: {liveQuote.last_updated}
+                  </div>
+                  <Button
+                    onClick={() => window.open('https://www.otcmarkets.com/stock/NUGL/quote', '_blank')}
+                    variant="outline"
+                    size="sm"
+                    className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10 text-xs"
+                  >
+                    <ExternalLink className="w-3 h-3 mr-1" />
+                    View Live Quote
+                  </Button>
                 </div>
-                <div className="text-xs text-gray-500">
-                  Last Updated: {liveQuote.last_updated}
+                <div className="text-xs text-gray-500 text-center">
+                  Quote data is indicative. For real-time quotes and official trading data, please visit OTC Markets.
                 </div>
-                <Button
-                  onClick={() => window.open('https://www.otcmarkets.com/stock/NUGL/quote', '_blank')}
-                  variant="outline"
-                  size="sm"
-                  className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10 text-xs"
-                >
-                  <ExternalLink className="w-3 h-3 mr-1" />
-                  View on OTC Markets
-                </Button>
               </div>
             </div>
           </Card>
