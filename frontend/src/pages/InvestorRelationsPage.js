@@ -51,6 +51,15 @@ export default function InvestorRelationsPage() {
     }
   };
 
+  const fetchLiveQuote = async () => {
+    try {
+      const response = await axios.get(`${API}/investor/live-quote`);
+      setLiveQuote(response.data);
+    } catch (error) {
+      console.error('Failed to fetch live quote', error);
+    }
+  };
+
   const formatCurrency = (value) => {
     if (!value && value !== 0) return 'N/A';
     return `$${Math.abs(value).toLocaleString()}K`;
