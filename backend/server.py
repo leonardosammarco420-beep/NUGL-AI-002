@@ -713,6 +713,11 @@ async def get_company_info():
     """Get company information from OTC Markets"""
     return otc_financials.get_company_info()
 
+@api_router.get("/investor/live-quote")
+async def get_live_quote():
+    """Get live stock quote for NUGL"""
+    return otc_financials.get_live_quote()
+
 # Affiliate Links
 @api_router.get("/affiliates/stake-casino")
 async def get_stake_link():
