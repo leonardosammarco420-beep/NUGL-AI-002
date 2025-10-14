@@ -353,6 +353,15 @@ export default function DispensariesPage() {
               USA
             </Button>
             <Button
+              onClick={() => setSelectedRegion('thailand')}
+              variant={selectedRegion === 'thailand' ? 'default' : 'outline'}
+              className={selectedRegion === 'thailand' 
+                ? 'bg-emerald-600 hover:bg-emerald-700' 
+                : 'border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10'}
+            >
+              Thailand
+            </Button>
+            <Button
               onClick={() => setSelectedRegion('canada')}
               variant={selectedRegion === 'canada' ? 'default' : 'outline'}
               className={selectedRegion === 'canada' 
