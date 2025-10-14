@@ -683,49 +683,35 @@ async def get_admin_stats(user_id: str = Depends(get_current_user)):
     }
     return stats
 
+# Investor Relations - OTC Markets Financials
+from services.otc_financials_service import OTCFinancialsService
+
+otc_financials = OTCFinancialsService()
+
 @api_router.get("/investor/quarterly-data")
 async def get_quarterly_data():
     """Get quarterly financial data for investor relations"""
-    # This data should be stored in database and updated by admin
-    # For now, returning hardcoded data - in production, fetch from DB
-    quarterly_data = [
-        {
-            "quarter": "Q2 2024",
-            "date": "06/30/2024",
-            "revenue": 708,
-            "growth": "-",
-            "transactions": 1250
-        },
-        {
-            "quarter": "Q3 2024",
-            "date": "09/30/2024",
-            "revenue": 726,
-            "growth": "+2.5%",
-            "transactions": 1420
-        },
-        {
-            "quarter": "Q4 2024",
-            "date": "12/31/2024",
-            "revenue": 936,
-            "growth": "+28.9%",
-            "transactions": 2340
-        },
-        {
-            "quarter": "Q1 2025",
-            "date": "03/31/2025",
-            "revenue": 751,
-            "growth": "-19.8%",
-            "transactions": 1880
-        },
-        {
-            "quarter": "Q2 2025",
-            "date": "06/30/2025",
-            "revenue": 866,
-            "growth": "+15.3%",
-            "transactions": 2156
-        }
-    ]
-    return {"quarterly_data": quarterly_data}
+    return otc_financials.get_quarterly_financials()
+
+@api_router.get("/investor/annual-data")
+async def get_annual_data():
+    """Get annual financial statements from OTC Markets"""
+    return otc_financials.get_annual_financials()
+
+@api_router.get("/investor/semi-annual-data")
+async def get_semi_annual_data():
+    """Get semi-annual financial statements"""
+    return otc_financials.get_semi_annual_financials()
+
+@api_router.get("/investor/filings")
+async def get_filings():
+    """Get all OTC Markets filings"""
+    return {"filings": otc_financials.get_all_filings()}
+
+@api_router.get("/investor/company-info")
+async def get_company_info():
+    """Get company information from OTC Markets"""
+    return otc_financials.get_company_info()
 
 # Affiliate Links
 @api_router.get("/affiliates/stake-casino")
