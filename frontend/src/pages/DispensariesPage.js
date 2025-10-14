@@ -38,6 +38,19 @@ export default function DispensariesPage() {
         featured: true,
         rating: 4.7,
         google_maps_link: 'https://www.google.com/maps/place/Kaya+Herb+House/@18.0079169,-76.8032875,17z'
+      },
+      {
+        id: 'kaya-drax-hall',
+        name: 'Kaya Herb House - Drax Hall',
+        location: 'Drax Hall, St. Ann, Jamaica',
+        address: 'Drax Hall, St. Ann, Jamaica',
+        phone: '+1 (876) 795-4490',
+        website: 'https://www.kayaherbhouse.com',
+        hours: 'Mon-Sun: 10:00 AM - 8:00 PM',
+        description: 'Scenic Kaya location in Drax Hall offering premium cannabis products in a relaxed atmosphere.',
+        featured: true,
+        rating: 4.8,
+        google_maps_link: 'https://share.google/Y8XDI8QZUObJ95P3Z'
       }
     ],
     amsterdam: [
