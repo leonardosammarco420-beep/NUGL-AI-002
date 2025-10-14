@@ -115,6 +115,9 @@ class Strain(BaseModel):
     description: str
     effects: List[str] = []
     flavors: List[str] = []
+    image: Optional[str] = None
+    rating: Optional[float] = None
+    source: Optional[str] = None
     affiliate_links: List[dict] = []  # {"dispensary": str, "url": str, "location": str}
 
 class StrainCreate(BaseModel):
