@@ -93,7 +93,7 @@ export default function DispensariesPage() {
         description: 'Upscale cannabis retailer with a wide selection of products and knowledgeable staff.',
         featured: true,
         rating: 4.6,
-        google_maps_link: 'https://maps.app.goo.gl/MedMenWestHollywood'
+        google_maps_link: 'https://www.google.com/maps/place/MedMen+-+West+Hollywood/@34.0900856,-118.3727756,17z'
       },
       {
         id: 'cookies-sf',
@@ -106,7 +106,7 @@ export default function DispensariesPage() {
         description: 'Premium cannabis brand flagship store featuring exclusive strains and apparel.',
         featured: true,
         rating: 4.8,
-        google_maps_link: 'https://maps.app.goo.gl/CookiesSanFrancisco'
+        google_maps_link: 'https://www.google.com/maps/place/Cookies+San+Francisco/@37.7729876,-122.4196981,17z'
       },
       {
         id: 'stiiizy-dtla',
@@ -119,7 +119,7 @@ export default function DispensariesPage() {
         description: 'Modern dispensary specializing in premium vapes and cannabis products.',
         featured: false,
         rating: 4.7,
-        google_maps_link: 'https://maps.app.goo.gl/STIIIZYDowntownLA'
+        google_maps_link: 'https://www.google.com/maps/place/STIIIZY+DTLA/@34.0407001,-118.2489651,17z'
       }
     ],
     canada: [
