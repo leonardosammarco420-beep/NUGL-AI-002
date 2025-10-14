@@ -52,7 +52,7 @@ export default function DispensariesPage() {
         description: 'Award-winning coffeeshop known for premium cannabis and friendly atmosphere.',
         featured: true,
         rating: 4.9,
-        google_maps_link: 'https://maps.app.goo.gl/ZxK8vYqMQE9nwVWh9'
+        google_maps_link: 'https://www.google.com/maps/place/Grey+Area/@52.3746908,4.8887153,17z'
       },
       {
         id: 'greenhouse',
@@ -65,7 +65,7 @@ export default function DispensariesPage() {
         description: 'Famous coffeeshop with multiple Cannabis Cup awards and a great selection.',
         featured: true,
         rating: 4.8,
-        google_maps_link: 'https://maps.app.goo.gl/GreenhouseAmsterdam'
+        google_maps_link: 'https://www.google.com/maps/place/The+Greenhouse+Centrum/@52.3743517,4.8964293,17z'
       },
       {
         id: 'barney',
@@ -78,7 +78,7 @@ export default function DispensariesPage() {
         description: 'Iconic coffeeshop and breakfast spot, winner of numerous awards.',
         featured: false,
         rating: 4.7,
-        google_maps_link: 'https://maps.app.goo.gl/BarneysAmsterdam'
+        google_maps_link: 'https://www.google.com/maps/place/Barney%27s+Coffeeshop/@52.3816271,4.8827113,17z'
       }
     ],
     usa: [
