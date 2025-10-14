@@ -18,7 +18,7 @@ export default function DispensariesPage() {
         name: 'Kaya Herb House - Ocho Rios',
         location: 'Ocho Rios, Jamaica',
         address: '8 Main Street, Ocho Rios, St. Ann, Jamaica',
-        phone: '+1 (876) 795-4490',
+        phone: '+1 (876) 882-7233',
         website: 'https://www.kayaherbhouse.com',
         hours: 'Mon-Sun: 10:00 AM - 8:00 PM',
         description: 'Jamaica\'s premier cannabis dispensary featuring premium strains, edibles, and wellness products.',
