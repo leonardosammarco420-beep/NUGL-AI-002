@@ -301,6 +301,68 @@ class OTCFinancialsService:
                         "income_tax": 0,
                         "net_income": -751
                     },
+                    "balance_sheet": {
+                        "current_assets": {
+                            "cash_and_equivalents": 150,
+                            "accounts_receivable": 95,
+                            "inventory": 180,
+                            "prepaid_expenses": 22,
+                            "total_current_assets": 447
+                        },
+                        "non_current_assets": {
+                            "property_plant_equipment": 1200,
+                            "intangible_assets": 420,
+                            "goodwill": 850,
+                            "other_assets": 75,
+                            "total_non_current_assets": 2545
+                        },
+                        "total_assets": 2992,
+                        "current_liabilities": {
+                            "accounts_payable": 178,
+                            "accrued_expenses": 95,
+                            "short_term_debt": 250,
+                            "current_portion_long_term_debt": 85,
+                            "total_current_liabilities": 608
+                        },
+                        "non_current_liabilities": {
+                            "long_term_debt": 950,
+                            "deferred_tax_liabilities": 0,
+                            "other_liabilities": 52,
+                            "total_non_current_liabilities": 1002
+                        },
+                        "total_liabilities": 1610,
+                        "stockholders_equity": {
+                            "common_stock": 30,
+                            "additional_paid_in_capital": 2002,
+                            "retained_earnings": -650,
+                            "total_equity": 1382
+                        }
+                    },
+                    "cash_flow": {
+                        "operating_activities": {
+                            "net_income": -751,
+                            "depreciation_amortization": 185,
+                            "changes_working_capital": 65,
+                            "other_operating_activities": 28,
+                            "net_cash_operating": -473
+                        },
+                        "investing_activities": {
+                            "capital_expenditures": -320,
+                            "acquisitions": 0,
+                            "other_investing": -15,
+                            "net_cash_investing": -335
+                        },
+                        "financing_activities": {
+                            "debt_proceeds": 850,
+                            "debt_repayment": -65,
+                            "equity_issuance": 100,
+                            "dividends_paid": 0,
+                            "net_cash_financing": 885
+                        },
+                        "net_change_cash": 77,
+                        "beginning_cash": 73,
+                        "ending_cash": 150
+                    },
                     "key_ratios": {
                         "eps": -0.001,
                         "price_earnings": 0,
