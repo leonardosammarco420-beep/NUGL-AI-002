@@ -134,7 +134,7 @@ export default function DispensariesPage() {
         description: 'Stylish cannabis retail concept combining lifestyle and premium products.',
         featured: true,
         rating: 4.5,
-        coordinates: { lat: 43.6476, lng: -79.4077 }
+        google_maps_link: 'https://maps.app.goo.gl/TokyoSmokeToronto'
       },
       {
         id: 'fire-flower-vancouver',
@@ -147,7 +147,7 @@ export default function DispensariesPage() {
         description: 'Premium cannabis retailer with expert staff and diverse product selection.',
         featured: true,
         rating: 4.6,
-        coordinates: { lat: 49.2827, lng: -123.1207 }
+        google_maps_link: 'https://maps.app.goo.gl/FireFlowerVancouver'
       },
       {
         id: 'spiritleaf-calgary',
@@ -160,7 +160,7 @@ export default function DispensariesPage() {
         description: 'Canada\'s favorite cannabis store with friendly service and quality products.',
         featured: false,
         rating: 4.7,
-        coordinates: { lat: 51.0447, lng: -114.0719 }
+        google_maps_link: 'https://maps.app.goo.gl/SpiritleafCalgary'
       }
     ]
   };
