@@ -47,13 +47,16 @@ export default function PressRoomPage() {
     }
     
     // Try format: /24/11/ (Benzinga 2-digit year: YY/MM/)
-    urlDateMatch = release.link.match(/\/(\d{2})\/(\d{2})\/\d+/);
-    if (urlDateMatch) {
-      const year = parseInt(urlDateMatch[1]);
-      const month = parseInt(urlDateMatch[2]);
-      // Convert 2-digit year: 18-99 = 2018-2099, 00-17 = 2000-2017
-      const fullYear = year >= 18 ? 2000 + year : 2000 + year;
-      return new Date(fullYear, month - 1, 1);
+    // Look specifically for benzinga.com URLs to avoid false matches
+    if (release.link.includes('benzinga.com')) {
+      urlDateMatch = release.link.match(/\/(\d{2})\/(\d{2})\/\d+/);
+      if (urlDateMatch) {
+        const year = parseInt(urlDateMatch[1]);
+        const month = parseInt(urlDateMatch[2]);
+        // Convert 2-digit year to full year (assume 2000s)
+        const fullYear = 2000 + year;
+        return new Date(fullYear, month - 1, 1);
+      }
     }
     
     // Extract year from title as fallback
