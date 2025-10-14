@@ -30,14 +30,14 @@ export default function DispensariesPage() {
         id: 'kaya-kingston',
         name: 'Kaya Herb House - Kingston',
         location: 'Kingston, Jamaica',
-        address: 'Shop #8, Marketplace, Kingston, Jamaica',
-        phone: '+1 (876) 123-4567',
+        address: '8 Marketplace, Kingston, Jamaica',
+        phone: '+1 (876) 630-5292',
         website: 'https://www.kayaherbhouse.com',
         hours: 'Mon-Sun: 9:00 AM - 9:00 PM',
         description: 'Urban location serving the capital with a full range of cannabis products and accessories.',
         featured: true,
         rating: 4.7,
-        google_maps_link: 'https://maps.app.goo.gl/KayaKingstonJamaica'
+        google_maps_link: 'https://www.google.com/maps/place/Kaya+Herb+House/@18.0079169,-76.8032875,17z'
       }
     ],
     amsterdam: [
