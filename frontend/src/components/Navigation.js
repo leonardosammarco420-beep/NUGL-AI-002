@@ -93,6 +93,7 @@ export default function Navigation() {
   const cannabisLinks = [
     { to: '/strains', label: 'Strains', icon: Leaf },
     { to: '/seeds', label: 'Seeds', icon: Sprout },
+    { to: '/dispensaries', label: 'Dispensaries', icon: MapPin },
     { to: '/chat', label: 'AI Chat', icon: Bot },
   ];
 
