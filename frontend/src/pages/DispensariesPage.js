@@ -134,7 +134,7 @@ export default function DispensariesPage() {
         description: 'Stylish cannabis retail concept combining lifestyle and premium products.',
         featured: true,
         rating: 4.5,
-        google_maps_link: 'https://maps.app.goo.gl/TokyoSmokeToronto'
+        google_maps_link: 'https://www.google.com/maps/place/Tokyo+Smoke/@43.6476181,-79.4099067,17z'
       },
       {
         id: 'fire-flower-vancouver',
@@ -147,7 +147,7 @@ export default function DispensariesPage() {
         description: 'Premium cannabis retailer with expert staff and diverse product selection.',
         featured: true,
         rating: 4.6,
-        google_maps_link: 'https://maps.app.goo.gl/FireFlowerVancouver'
+        google_maps_link: 'https://www.google.com/maps/place/Fire+%26+Flower/@49.282705,-123.1228957,17z'
       },
       {
         id: 'spiritleaf-calgary',
@@ -160,7 +160,7 @@ export default function DispensariesPage() {
         description: 'Canada\'s favorite cannabis store with friendly service and quality products.',
         featured: false,
         rating: 4.7,
-        google_maps_link: 'https://maps.app.goo.gl/SpiritleafCalgary'
+        google_maps_link: 'https://www.google.com/maps/place/Spiritleaf/@51.0446801,-114.0740857,17z'
       }
     ]
   };
