@@ -24,7 +24,7 @@ export default function DispensariesPage() {
         description: 'Jamaica\'s premier cannabis dispensary featuring premium strains, edibles, and wellness products.',
         featured: true,
         rating: 4.8,
-        coordinates: { lat: 18.4079, lng: -77.1033 }
+        google_maps_link: 'https://share.google/aFY22wqcHg364IoMa'
       },
       {
         id: 'kaya-kingston',
@@ -37,7 +37,7 @@ export default function DispensariesPage() {
         description: 'Urban location serving the capital with a full range of cannabis products and accessories.',
         featured: true,
         rating: 4.7,
-        coordinates: { lat: 18.0179, lng: -76.8099 }
+        google_maps_link: 'https://maps.app.goo.gl/KayaKingstonJamaica'
       }
     ],
     amsterdam: [
