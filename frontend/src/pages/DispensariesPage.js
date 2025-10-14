@@ -379,6 +379,7 @@ export default function DispensariesPage() {
             {selectedRegion === 'all' ? 'All Dispensaries' : 
              selectedRegion === 'jamaica' ? 'Jamaica - Herb Houses' :
              selectedRegion === 'amsterdam' ? 'Amsterdam - Coffeeshops' :
+             selectedRegion === 'thailand' ? 'Thailand - Cannabis Dispensaries' :
              selectedRegion === 'usa' ? 'United States - Dispensaries' :
              'Canada - Cannabis Stores'}
             <span className="text-gray-500 text-lg ml-2">({getFilteredDispensaries().length})</span>
