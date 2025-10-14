@@ -15,11 +15,12 @@ kaya_strains = [
     {
         "name": "Kingston Lemon Skunk",
         "type": "Sativa",
-        "thc": 16,
-        "cbd": 0,
+        "thc_content": 16,
+        "cbd_content": 0,
         "effects": ["Energetic", "Creative", "Sociable"],
         "flavors": ["Lemon", "Citrus", "Skunk"],
         "description": "A classic Jamaican sativa with energizing effects perfect for daytime use.",
+        "image": "https://images.unsplash.com/photo-1536964310528-e47dd655ecf3?w=400",
         "source": "Kaya Herb House",
         "rating": 4.6
     },
