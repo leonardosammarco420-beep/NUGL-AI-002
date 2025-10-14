@@ -44,7 +44,7 @@ export default function DispensariesPage() {
         name: 'Kaya Herb House - Drax Hall',
         location: 'Drax Hall, St. Ann, Jamaica',
         address: 'Drax Hall, St. Ann, Jamaica',
-        phone: '+1 (876) 795-4490',
+        phone: '+1 (876) 627-9333',
         website: 'https://www.kayaherbhouse.com',
         hours: 'Mon-Sun: 10:00 AM - 8:00 PM',
         description: 'Scenic Kaya location in Drax Hall offering premium cannabis products in a relaxed atmosphere.',
