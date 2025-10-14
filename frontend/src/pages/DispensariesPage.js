@@ -382,9 +382,10 @@ export default function DispensariesPage() {
                     Visit Website
                   </Button>
                   <Button
-                    onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${dispensary.coordinates.lat},${dispensary.coordinates.lng}`, '_blank')}
+                    onClick={() => window.open(dispensary.google_maps_link, '_blank')}
                     variant="outline"
                     className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10"
+                    title="Open in Google Maps"
                   >
                     <MapPin className="w-4 h-4" />
                   </Button>
