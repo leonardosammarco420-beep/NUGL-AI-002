@@ -22,6 +22,7 @@ import AffiliateDashboardPage from './pages/AffiliateDashboardPage';
 import AIHubPage from './pages/AIHubPage';
 import SocialHubPage from './pages/SocialHubPage';
 import PressRoomPage from './pages/PressRoomPage';
+import DispensariesPage from './pages/DispensariesPage';
 import './App.css';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
