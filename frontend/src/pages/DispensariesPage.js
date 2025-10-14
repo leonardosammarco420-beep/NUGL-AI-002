@@ -279,8 +279,10 @@ export default function DispensariesPage() {
               <button
                 key={region.name}
                 onClick={() => {
-                  const regionKey = region.name === 'Netherlands' ? 'amsterdam' : region.name.toLowerCase().replace(' ', '-');
-                  setSelectedRegion(regionKey === 'united-states' ? 'usa' : regionKey);
+                  const regionKey = region.name === 'Netherlands' ? 'amsterdam' : 
+                                   region.name === 'United States' ? 'usa' :
+                                   region.name.toLowerCase();
+                  setSelectedRegion(regionKey);
                   window.scrollTo({ top: 600, behavior: 'smooth' });
                 }}
                 className={`p-6 rounded-xl border-2 transition-all text-left hover:scale-105 ${
