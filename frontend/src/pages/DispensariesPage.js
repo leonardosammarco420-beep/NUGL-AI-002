@@ -52,7 +52,7 @@ export default function DispensariesPage() {
         description: 'Award-winning coffeeshop known for premium cannabis and friendly atmosphere.',
         featured: true,
         rating: 4.9,
-        coordinates: { lat: 52.3738, lng: 4.8910 }
+        google_maps_link: 'https://maps.app.goo.gl/ZxK8vYqMQE9nwVWh9'
       },
       {
         id: 'greenhouse',
@@ -65,7 +65,7 @@ export default function DispensariesPage() {
         description: 'Famous coffeeshop with multiple Cannabis Cup awards and a great selection.',
         featured: true,
         rating: 4.8,
-        coordinates: { lat: 52.3747, lng: 4.8986 }
+        google_maps_link: 'https://maps.app.goo.gl/GreenhouseAmsterdam'
       },
       {
         id: 'barney',
@@ -78,7 +78,7 @@ export default function DispensariesPage() {
         description: 'Iconic coffeeshop and breakfast spot, winner of numerous awards.',
         featured: false,
         rating: 4.7,
-        coordinates: { lat: 52.3816, lng: 4.8850 }
+        google_maps_link: 'https://maps.app.goo.gl/BarneysAmsterdam'
       }
     ],
     usa: [
