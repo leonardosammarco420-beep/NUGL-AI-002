@@ -177,15 +177,40 @@ export default function Navigation() {
                 News
               </Link>
 
-              {/* Crypto */}
-              <Link
-                to="/crypto"
-                data-testid="nav-crypto"
-                className="px-3 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:from-teal-600 hover:to-emerald-600 transition-colors"
-              >
-                <Building2 className="w-4 h-4 inline mr-1" />
-                Crypto
-              </Link>
+              {/* Crypto Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button 
+                    className="px-3 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:from-teal-600 hover:to-emerald-600 transition-colors flex items-center gap-1"
+                    data-testid="nav-crypto"
+                  >
+                    <Building2 className="w-4 h-4" />
+                    Crypto
+                    <ChevronDown className="w-3 h-3" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent 
+                  className="bg-slate-900 border-teal-500/30 min-w-[180px]"
+                  align="end"
+                >
+                  {cryptoLinks.map((link) => (
+                    <DropdownMenuItem 
+                      key={link.to}
+                      asChild
+                      className="cursor-pointer text-gray-300 hover:text-teal-400 hover:bg-slate-800/50 focus:text-teal-400 focus:bg-slate-800/50"
+                    >
+                      <Link 
+                        to={link.to} 
+                        className="flex items-center gap-2 w-full"
+                        data-testid={`crypto-${link.label.toLowerCase().replace(' ', '-')}`}
+                      >
+                        <link.icon className="w-4 h-4" />
+                        {link.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
               
               {/* Cannabis Dropdown */}
               <DropdownMenu>
