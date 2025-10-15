@@ -1155,6 +1155,19 @@ async def get_live_ticker(category: str = 'all'):
             ]
             ticker_data.extend(cannabis_stocks)
         
+        # Psychedelic stocks (for psychedelics category)
+        if category == 'psychedelics':
+            psychedelic_stocks = [
+                {'symbol': 'CMPS', 'name': 'COMPASS Pathways', 'price': 7.82, 'change': round(random.uniform(-6, 6), 2), 'type': 'psychedelics'},
+                {'symbol': 'MNMD', 'name': 'Mind Medicine', 'price': 5.45, 'change': round(random.uniform(-7, 7), 2), 'type': 'psychedelics'},
+                {'symbol': 'ATAI', 'name': 'ATAI Life Sciences', 'price': 1.23, 'change': round(random.uniform(-8, 8), 2), 'type': 'psychedelics'},
+                {'symbol': 'CYBN', 'name': 'Cybin Inc', 'price': 0.89, 'change': round(random.uniform(-9, 9), 2), 'type': 'psychedelics'},
+                {'symbol': 'NUMI', 'name': 'Numinus Wellness', 'price': 0.34, 'change': round(random.uniform(-10, 10), 2), 'type': 'psychedelics'},
+                {'symbol': 'FTRP', 'name': 'Field Trip Health', 'price': 0.18, 'change': round(random.uniform(-12, 12), 2), 'type': 'psychedelics'},
+                {'symbol': 'TRIP', 'name': 'Red Light Holland', 'price': 0.06, 'change': round(random.uniform(-15, 15), 2), 'type': 'psychedelics'},
+            ]
+            ticker_data.extend(psychedelic_stocks)
+        
         # AI stocks (for AI category)
         if category == 'ai':
             ai_stocks = [
