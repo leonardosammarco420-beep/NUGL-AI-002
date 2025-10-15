@@ -83,7 +83,7 @@ export default function Navigation() {
 
   const navLinks = [
     { to: '/news', label: 'News' },
-    { to: '/crypto', label: 'Crypto', highlight: true },
+    { to: '/crypto', label: 'Crypto' },
     { to: '/nft-marketplace', label: 'NFTs' },
     { to: '/shop', label: 'Shop' },
     { to: '/affiliate', label: 'Affiliate' },
