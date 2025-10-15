@@ -92,10 +92,15 @@ export default function Navigation() {
 
   const cannabisLinks = [
     { to: '/strains', label: 'Strains', icon: Leaf },
-    { to: '/seeds', label: 'Seeds', icon: Sprout },
     { to: '/dispensaries', label: 'Dispensaries', icon: MapPin },
     { to: '/psychedelics', label: 'Psychedelics', icon: Sparkles },
     { to: '/chat', label: 'AI Chat', icon: Bot },
+  ];
+
+  const seedLinks = [
+    { to: '/seeds/search', label: 'Advanced Search', icon: Search },
+    { to: '/seeds/banks', label: 'Seed Bank Reviews', icon: Store },
+    { to: '/seeds', label: 'Strain Database', icon: Sprout },
   ];
 
   const mediaLinks = [
