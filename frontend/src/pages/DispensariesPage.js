@@ -216,6 +216,142 @@ export default function DispensariesPage() {
         rating: 4.7,
         google_maps_link: 'https://www.google.com/maps/place/Spiritleaf/@51.0446801,-114.0740857,17z'
       }
+    ],
+    germany: [
+      {
+        id: 'bloom-berlin',
+        name: 'Bloom Berlin Cannabis Club',
+        location: 'Berlin, Germany',
+        address: 'Warschauer Str. 34, 10243 Berlin',
+        phone: '+49 30 555 12345',
+        website: 'https://www.bloomberlin.de',
+        hours: 'Mon-Fri: 2:00 PM - 10:00 PM, Sat-Sun: 12:00 PM - 11:00 PM',
+        description: 'Members-only cannabis social club in Berlin\'s vibrant Friedrichshain district. Legal cultivation and distribution for registered members under new German cannabis law.',
+        featured: true,
+        rating: 4.7,
+        google_maps_link: 'https://www.google.com/maps/place/Warschauer+Str.+34,+Berlin/@52.5056,13.4494,17z'
+      },
+      {
+        id: 'green-garden-munich',
+        name: 'Green Garden München',
+        location: 'Munich, Germany',
+        address: 'Lindwurmstraße 88, 80337 München',
+        phone: '+49 89 555 67890',
+        website: 'https://www.greengarden-muenchen.de',
+        hours: 'Mon-Sun: 3:00 PM - 10:00 PM',
+        description: 'Premium cannabis social club offering quality strains and a welcoming community atmosphere. Membership-based access following German regulations.',
+        featured: true,
+        rating: 4.8,
+        google_maps_link: 'https://www.google.com/maps/place/Lindwurmstra%C3%9Fe+88,+M%C3%BCnchen/@48.1272,11.5491,17z'
+      },
+      {
+        id: 'hanfbar-hamburg',
+        name: 'Hanfbar Hamburg Social Club',
+        location: 'Hamburg, Germany',
+        address: 'Reeperbahn 42, 20359 Hamburg',
+        phone: '+49 40 555 23456',
+        website: 'https://www.hanfbar-hamburg.de',
+        hours: 'Mon-Thu: 4:00 PM - 11:00 PM, Fri-Sun: 2:00 PM - 12:00 AM',
+        description: 'Hamburg\'s premier cannabis social club near the iconic Reeperbahn. Members enjoy locally grown organic strains and educational workshops.',
+        featured: true,
+        rating: 4.6,
+        google_maps_link: 'https://www.google.com/maps/place/Reeperbahn+42,+Hamburg/@53.5495,9.9597,17z'
+      }
+    ],
+    australia: [
+      {
+        id: 'cannahealth-sydney',
+        name: 'CannaHealth Sydney',
+        location: 'Sydney, New South Wales',
+        address: '234 George Street, Sydney NSW 2000',
+        phone: '+61 2 8765 4321',
+        website: 'https://www.cannahealth.com.au',
+        hours: 'Mon-Fri: 9:00 AM - 6:00 PM, Sat: 10:00 AM - 4:00 PM',
+        description: 'Medical cannabis dispensary providing prescription cannabis products. Consultation services available with registered healthcare professionals.',
+        featured: true,
+        rating: 4.7,
+        google_maps_link: 'https://www.google.com/maps/place/234+George+St,+Sydney/@-33.8688,151.2093,17z'
+      },
+      {
+        id: 'montu-melbourne',
+        name: 'Montu Medical Cannabis Clinic',
+        location: 'Melbourne, Victoria',
+        address: '567 Collins Street, Melbourne VIC 3000',
+        phone: '+61 3 9876 5432',
+        website: 'https://www.montu.com.au',
+        hours: 'Mon-Fri: 9:00 AM - 5:30 PM',
+        description: 'Leading medical cannabis clinic offering comprehensive patient care, consultations, and access to premium cannabis medicines.',
+        featured: true,
+        rating: 4.8,
+        google_maps_link: 'https://www.google.com/maps/place/567+Collins+St,+Melbourne/@-37.8174,144.9581,17z'
+      },
+      {
+        id: 'greencare-brisbane',
+        name: 'GreenCare Clinic Brisbane',
+        location: 'Brisbane, Queensland',
+        address: '123 Queen Street, Brisbane QLD 4000',
+        phone: '+61 7 3456 7890',
+        website: 'https://www.greencareclinic.com.au',
+        hours: 'Mon-Fri: 8:30 AM - 5:00 PM',
+        description: 'Specialized medical cannabis clinic providing personalized treatment plans and ongoing patient support for chronic conditions.',
+        featured: false,
+        rating: 4.6,
+        google_maps_link: 'https://www.google.com/maps/place/123+Queen+St,+Brisbane/@-27.4698,153.0251,17z'
+      }
+    ],
+    spain: [
+      {
+        id: 'growshop-bcn',
+        name: 'GrowShop Barcelona Cannabis Social Club',
+        location: 'Barcelona, Spain',
+        address: 'Carrer de Mallorca 234, 08008 Barcelona',
+        phone: '+34 933 445 566',
+        website: 'https://www.growshopbcn.com',
+        hours: 'Mon-Sun: 11:00 AM - 10:00 PM',
+        description: 'Exclusive members-only cannabis social club in Barcelona\'s Eixample district. Private consumption lounge with premium strains and events.',
+        featured: true,
+        rating: 4.9,
+        google_maps_link: 'https://www.google.com/maps/place/Carrer+de+Mallorca+234,+Barcelona/@41.3953,2.1597,17z'
+      },
+      {
+        id: 'green-panthers-madrid',
+        name: 'Green Panthers Social Club',
+        location: 'Madrid, Spain',
+        address: 'Calle de Atocha 89, 28012 Madrid',
+        phone: '+34 915 678 901',
+        website: 'https://www.greenpanthers.es',
+        hours: 'Mon-Sun: 12:00 PM - 11:00 PM',
+        description: 'Madrid\'s premier cannabis social club offering a sophisticated lounge atmosphere, quality genetics, and regular member events.',
+        featured: true,
+        rating: 4.7,
+        google_maps_link: 'https://www.google.com/maps/place/Calle+de+Atocha+89,+Madrid/@40.4119,-3.7008,17z'
+      },
+      {
+        id: 'cannabaska-bilbao',
+        name: 'Cannabaska Social Club',
+        location: 'Bilbao, Spain',
+        address: 'Gran Vía 45, 48011 Bilbao',
+        phone: '+34 944 123 456',
+        website: 'https://www.cannabaska.com',
+        hours: 'Mon-Fri: 3:00 PM - 10:00 PM, Sat-Sun: 1:00 PM - 11:00 PM',
+        description: 'Basque Country\'s finest cannabis social club. Members-only association with organic strains and a welcoming community.',
+        featured: true,
+        rating: 4.8,
+        google_maps_link: 'https://www.google.com/maps/place/Gran+V%C3%ADa+45,+Bilbao/@43.2574,-2.9265,17z'
+      },
+      {
+        id: 'el-jardin-valencia',
+        name: 'El Jardín Verde Cannabis Club',
+        location: 'Valencia, Spain',
+        address: 'Carrer de Xàtiva 12, 46002 Valencia',
+        phone: '+34 963 789 012',
+        website: 'https://www.eljardinverde.es',
+        hours: 'Mon-Sun: 2:00 PM - 10:00 PM',
+        description: 'Valencia\'s modern cannabis social club featuring a garden terrace, premium selection, and regular cultural events for members.',
+        featured: false,
+        rating: 4.6,
+        google_maps_link: 'https://www.google.com/maps/place/Carrer+de+X%C3%A0tiva+12,+Valencia/@39.4668,-0.3759,17z'
+      }
     ]
   };
 
