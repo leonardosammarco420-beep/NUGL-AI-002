@@ -13,7 +13,8 @@ class FedExService:
     def __init__(self):
         self.api_key = os.getenv('FEDEX_API_KEY')
         self.api_secret = os.getenv('FEDEX_SECRET_KEY')
-        self.base_url = os.getenv('FEDEX_BASE_URL', 'https://apis-sandbox.fedex.com')
+        self.base_url = os.getenv('FEDEX_BASE_URL', 'https://apis.fedex.com')  # Production by default
+        self.account_number = os.getenv('FEDEX_ACCOUNT_NUMBER', 'YOUR_ACCOUNT_NUMBER')
         self.token = None
         self.token_expires_at = None
         
