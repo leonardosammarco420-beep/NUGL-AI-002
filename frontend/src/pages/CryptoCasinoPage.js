@@ -272,17 +272,6 @@ export default function CryptoCasinoPage() {
                   </div>
                 </div>
 
-                {/* Commission Banner */}
-                <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 mb-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Trophy className="w-5 h-5 text-yellow-400" />
-                      <span className="text-yellow-400 font-semibold">Affiliate Commission</span>
-                    </div>
-                    <span className="text-white font-bold">{casino.commission}</span>
-                  </div>
-                </div>
-
                 {/* CTA */}
                 <Button 
                   onClick={() => handleAffiliateClick(casino)}
