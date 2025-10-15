@@ -176,13 +176,8 @@ export default function CryptoCasinoPage() {
             </h1>
           </div>
           <p className="text-gray-400 text-xl mb-4">
-            Top-rated crypto casinos with exclusive bonuses and affiliate rewards
+            Top-rated crypto casinos with exclusive bonuses and instant crypto payouts
           </p>
-          <div className="flex items-center justify-center gap-2 text-yellow-400">
-            <Star className="w-5 h-5 fill-current" />
-            <span className="font-semibold">Earn up to 40% Revenue Share</span>
-            <Star className="w-5 h-5 fill-current" />
-          </div>
         </div>
 
         {/* Filter Tabs */}
