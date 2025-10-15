@@ -1175,7 +1175,7 @@ async def get_live_ticker(category: str = 'all'):
                 {'symbol': 'DJI', 'name': 'Dow Jones', 'price': 42450.30, 'change': round(random.uniform(-1, 1), 2), 'type': 'index'},
                 {'symbol': 'IXIC', 'name': 'NASDAQ', 'price': 18380.45, 'change': round(random.uniform(-1.5, 1.5), 2), 'type': 'index'},
                 {'symbol': 'FTSE', 'name': 'FTSE 100', 'price': 8240.10, 'change': round(random.uniform(-0.8, 0.8), 2), 'type': 'index'},
-                {'symbol': 'GOLD', 'name': 'Gold', 'price': 2685.40, 'change': round(random.uniform(-1, 1), 2), 'type': 'commodity'},
+                {'symbol': 'GOLD', 'name': 'Gold', 'price': 4175.00, 'change': round(random.uniform(-1, 1), 2), 'type': 'commodity'},
                 {'symbol': 'OIL', 'name': 'Crude Oil', 'price': 72.80, 'change': round(random.uniform(-2, 2), 2), 'type': 'commodity'},
             ]
             ticker_data.extend(indices)
