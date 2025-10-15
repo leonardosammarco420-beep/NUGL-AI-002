@@ -569,6 +569,22 @@ async def get_wallet_user(wallet_address: str):
     
     return user
 
+@api_router.get("/affiliate/partners")
+async def get_affiliate_partners(status: Optional[str] = None, tab: Optional[str] = None):
+    """
+    Get all affiliate partners with optional filtering
+    status: 'active', 'pending', 'paused'
+    tab: 'Seeds', 'Crypto Casino', 'Dispensaries', 'Psychedelics'
+    """
+    query = {}
+    if status:
+        query["status"] = status
+    if tab:
+        query["tab"] = tab
+    
+    partners = await db.affiliate_partners.find(query, {"_id": 0}).to_list(1000)
+    return partners
+
 @api_router.get("/affiliate/dashboard")
 async def get_affiliate_dashboard():
     """Get affiliate dashboard stats"""
