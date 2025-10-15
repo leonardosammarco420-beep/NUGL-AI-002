@@ -17,6 +17,7 @@ import SubscriptionPage from './pages/SubscriptionPage';
 import EarningsPage from './pages/EarningsPage';
 import InvestorRelationsPage from './pages/InvestorRelationsPage';
 import CryptoPage from './pages/CryptoPage';
+import CryptoCasinoPage from './pages/CryptoCasinoPage';
 import MediaPage from './pages/MediaPage';
 import AffiliateDashboardPage from './pages/AffiliateDashboardPage';
 import AIHubPage from './pages/AIHubPage';
