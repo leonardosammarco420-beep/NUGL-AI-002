@@ -115,6 +115,11 @@ export default function Navigation() {
     { to: '/ai-hub?model=huggingface', label: 'HuggingFace Spaces', icon: Bot },
   ];
 
+  const cryptoLinks = [
+    { to: '/crypto', label: 'Crypto Hub', icon: Building2 },
+    { to: '/crypto-casino', label: 'Crypto Casino', icon: DollarSign },
+  ];
+
   return (
     <>
       <nav className="sticky top-0 z-50 backdrop-blur-xl bg-slate-900/80 border-b border-teal-500/20">
