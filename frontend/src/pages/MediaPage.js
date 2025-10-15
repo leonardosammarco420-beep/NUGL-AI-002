@@ -15,16 +15,27 @@ export default function MediaPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchLegacyContent();
+    fetchMediaArticles();
   }, [category]);
 
-  const fetchLegacyContent = async () => {
+  const fetchMediaArticles = async () => {
     try {
-      const response = await axios.get(`${API}/media/legacy/${category}`);
-      setArticles(response.data.articles || []);
-      setCategoryInfo(response.data.category || getDefaultCategoryInfo());
+      // Map URL category to API category format
+      const categoryMapping = {
+        'nugl-tv': 'NUGL TV',
+        'business': 'Business',
+        'culture': 'Culture',
+        'grow-products': 'Grow Products',
+        'wellness': 'Wellness',
+        'events': 'Events'
+      };
+      
+      const apiCategory = categoryMapping[category] || 'NUGL TV';
+      const response = await axios.get(`${API}/media?category=${apiCategory}`);
+      setArticles(response.data || []);
+      setCategoryInfo(getDefaultCategoryInfo());
     } catch (error) {
-      console.error('Error fetching legacy content:', error);
+      console.error('Error fetching media articles:', error);
       setCategoryInfo(getDefaultCategoryInfo());
     } finally {
       setLoading(false);
