@@ -536,6 +536,33 @@ export default function DispensariesPage() {
             >
               Canada
             </Button>
+            <Button
+              onClick={() => setSelectedRegion('germany')}
+              variant={selectedRegion === 'germany' ? 'default' : 'outline'}
+              className={selectedRegion === 'germany' 
+                ? 'bg-emerald-600 hover:bg-emerald-700' 
+                : 'border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10'}
+            >
+              Germany
+            </Button>
+            <Button
+              onClick={() => setSelectedRegion('australia')}
+              variant={selectedRegion === 'australia' ? 'default' : 'outline'}
+              className={selectedRegion === 'australia' 
+                ? 'bg-emerald-600 hover:bg-emerald-700' 
+                : 'border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10'}
+            >
+              Australia
+            </Button>
+            <Button
+              onClick={() => setSelectedRegion('spain')}
+              variant={selectedRegion === 'spain' ? 'default' : 'outline'}
+              className={selectedRegion === 'spain' 
+                ? 'bg-emerald-600 hover:bg-emerald-700' 
+                : 'border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10'}
+            >
+              Spain
+            </Button>
           </div>
         </div>
 
@@ -547,7 +574,10 @@ export default function DispensariesPage() {
              selectedRegion === 'amsterdam' ? 'Amsterdam - Coffeeshops' :
              selectedRegion === 'thailand' ? 'Thailand - Cannabis Dispensaries' :
              selectedRegion === 'usa' ? 'United States - Dispensaries' :
-             'Canada - Cannabis Stores'}
+             selectedRegion === 'canada' ? 'Canada - Cannabis Stores' :
+             selectedRegion === 'germany' ? 'Germany - Cannabis Social Clubs' :
+             selectedRegion === 'australia' ? 'Australia - Medical Cannabis Clinics' :
+             'Spain - Cannabis Social Clubs'}
             <span className="text-gray-500 text-lg ml-2">({getFilteredDispensaries().length})</span>
           </h2>
 
