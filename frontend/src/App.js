@@ -7,6 +7,7 @@ import NewsPage from './pages/NewsPage';
 import StrainFinderPage from './pages/StrainFinderPage';
 import SeedFinderPage from './pages/SeedFinderPage';
 import NFTMarketplacePage from './pages/NFTMarketplacePage';
+import NFTGalleryPage from './pages/NFTGalleryPage';
 import ChatbotPage from './pages/ChatbotPage';
 import WalletPage from './pages/WalletPage';
 import ProfilePage from './pages/ProfilePage';
