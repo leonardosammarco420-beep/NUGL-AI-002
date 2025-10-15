@@ -84,6 +84,7 @@ function App() {
             <Route path="/shop" element={<ShoppingPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/crypto" element={<CryptoPage />} />
+            <Route path="/crypto-casino" element={<CryptoCasinoPage />} />
             <Route path="/subscription" element={<SubscriptionPage />} />
             <Route path="/earnings" element={<EarningsPage />} />
             <Route path="/investors" element={<InvestorRelationsPage />} />
