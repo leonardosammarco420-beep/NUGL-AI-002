@@ -409,7 +409,7 @@ async def get_strains(search: Optional[str] = None, strain_type: Optional[str] =
     if strain_type:
         query["type"] = strain_type
     
-    strains = await db.strains.find(query, {"_id": 0}).to_list(100)
+    strains = await db.strains.find(query, {"_id": 0}).to_list(500)  # Increased limit to accommodate full database
     return strains
 
 @api_router.post("/strains", response_model=Strain)
