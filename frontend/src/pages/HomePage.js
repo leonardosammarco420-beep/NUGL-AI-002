@@ -137,7 +137,7 @@ export default function HomePage() {
                 Earn While You Explore
               </h2>
               <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-                Access exclusive affiliate partnerships with legal cannabis dispensaries, seed wholesalers, and Stake Casino. Start earning commissions today.
+                Access exclusive affiliate partnerships with legal cannabis dispensaries, seed wholesalers, and Crypto Casino. Start earning commissions today.
               </p>
               <Button size="lg" className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white" data-testid="cta-get-started">
                 Get Started
