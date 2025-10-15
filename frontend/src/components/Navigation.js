@@ -120,6 +120,11 @@ export default function Navigation() {
     { to: '/crypto-casino', label: 'Crypto Casino', icon: DollarSign },
   ];
 
+  const nftLinks = [
+    { to: '/nft-marketplace', label: 'NFT Marketplace', icon: Palette },
+    { to: '/nft-gallery', label: 'Artist Gallery', icon: Image },
+  ];
+
   return (
     <>
       <nav className="sticky top-0 z-50 backdrop-blur-xl bg-slate-900/80 border-b border-teal-500/20">
