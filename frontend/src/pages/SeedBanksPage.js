@@ -98,9 +98,48 @@ export default function SeedBanksPage() {
       affiliateLink: "https://royalqueenseeds.com?ref=nugl",
       category: "featured"
     },
-    // Other Reputable Banks
     {
       id: 3,
+      name: "The Herbies Headshop",
+      tagline: "3000+ Strains - World's Largest Selection",
+      logo: "🌿",
+      country: "United Kingdom",
+      founded: 2000,
+      rating: 4.9,
+      reviews: 15840,
+      featured: true,
+      partner: true,
+      exclusive: "Official Partner - The Digital Greenhouse",
+      description: "The Herbies Headshop is one of the world's leading cannabis seed banks, offering the largest selection of premium genetics from top international breeders. With over 20 years of experience and 3000+ strains, Herbies provides discreet worldwide shipping with stealth packaging and germination guarantees.",
+      specialties: ["Massive Selection", "Worldwide Shipping", "Top Breeders", "Stealth Packaging"],
+      shipping: ["Worldwide Discreet", "Stealth Packaging", "Tracked Delivery"],
+      paymentMethods: ["Credit Card", "Bitcoin", "Crypto", "Bank Transfer"],
+      germination: "95% guarantee",
+      stealth: true,
+      pricing: "Budget to Premium ($15-200/seed pack)",
+      prosCons: {
+        pros: [
+          "Largest strain selection (3000+ strains)",
+          "Excellent germination guarantee (95%)",
+          "Stealth packaging for discreet delivery",
+          "Worldwide shipping to most countries",
+          "Top breeder genetics (Dutch Passion, Barney's Farm, FastBuds)",
+          "Bitcoin and crypto accepted",
+          "Frequent sales and promotions",
+          "Excellent customer support"
+        ],
+        cons: [
+          "UK shipping can take 2-3 weeks internationally",
+          "Some strains may be out of stock due to high demand"
+        ]
+      },
+      topStrains: ["Gorilla Glue #4", "Girl Scout Cookies", "Bruce Banner", "Wedding Cake", "Zkittlez"],
+      affiliateLink: "https://herbiesheadshop.com/?utm_source=digitalgreenhouse&utm_medium=people&utm_campaign=digitalgreenhouse_partner&a_aid=digitalgreenhouse",
+      category: "featured"
+    },
+    // Other Reputable Banks
+    {
+      id: 4,
       name: "Seedsman",
       tagline: "20+ Years of Excellence",
       logo: "🌱",
