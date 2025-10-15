@@ -462,10 +462,6 @@ export default function DispensariesPage() {
                 <p className="text-xs text-gray-400">Click to view dispensaries</p>
               </button>
             ))}
-                <p className={`text-xs font-semibold text-${region.color}-400 mb-2`}>{region.status}</p>
-                <p className="text-xs text-gray-400">Click to view dispensaries</p>
-              </button>
-            ))}
           </div>
         </Card>
 
