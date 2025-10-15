@@ -26,7 +26,7 @@ export default function CryptoCasinoPage() {
     {
       id: 1,
       name: 'Stake Casino',
-      logo: 'https://stake.com/_app/immutable/assets/logo.DnytOQ2b.svg',
+      logo: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%2300b894" width="100" height="100"/><text x="50" y="60" text-anchor="middle" font-size="40" font-weight="bold" fill="white">$</text></svg>',
       description: 'The world\'s leading crypto casino with 4000+ games, sports betting, and live dealer options.',
       bonus: '$500K Daily Race + 200% Deposit Bonus',
       features: ['Instant Crypto Deposits', 'Live Casino', 'Sports Betting', 'VIP Program'],
@@ -40,7 +40,7 @@ export default function CryptoCasinoPage() {
     {
       id: 2,
       name: 'BC.Game',
-      logo: 'https://bc.game/favicon.ico',
+      logo: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23fbbf24" width="100" height="100"/><text x="50" y="65" text-anchor="middle" font-size="35" font-weight="bold" fill="black">BC</text></svg>',
       description: 'Licensed crypto casino with 10,000+ slots, original games, and massive jackpots.',
       bonus: '300% Welcome Bonus up to $20,000',
       features: ['10,000+ Games', 'Original Exclusives', 'Lottery', 'Lucky Spin'],
@@ -54,7 +54,7 @@ export default function CryptoCasinoPage() {
     {
       id: 3,
       name: 'Rollbit Casino',
-      logo: 'https://rollbit.com/static/favicon.ico',
+      logo: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%2314b8a6" width="100" height="100"/><text x="50" y="60" text-anchor="middle" font-size="40" font-weight="bold" fill="white">R</text></svg>',
       description: 'NFT-focused crypto casino with unique gamification and sports betting.',
       bonus: '$1,000 Welcome Package + NFT Rewards',
       features: ['NFT Rewards', 'Sports Book', 'Live Dealers', 'Crypto Trading'],
@@ -68,7 +68,7 @@ export default function CryptoCasinoPage() {
     {
       id: 4,
       name: 'Roobet Casino',
-      logo: 'https://roobet.com/favicon.ico',
+      logo: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="grad" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" style="stop-color:%23ef4444;stop-opacity:1"/><stop offset="100%25" style="stop-color:%23dc2626;stop-opacity:1"/></linearGradient></defs><rect fill="url(%23grad)" width="100" height="100"/><text x="50" y="60" text-anchor="middle" font-size="50" font-weight="bold" fill="white">🦘</text></svg>',
       description: 'Vibrant crypto casino known for Crash, Dice, and exclusive partner games.',
       bonus: '$10,000 Welcome Bonus + Daily Rewards',
       features: ['Crash Games', 'Exclusive Slots', 'Daily Rakeback', 'VIP Rewards'],
