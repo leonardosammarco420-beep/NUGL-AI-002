@@ -212,7 +212,7 @@ export default function SeedBanksPage() {
       category: "beginner"
     },
     {
-      id: 5,
+      id: 6,
       name: "Barney's Farm",
       tagline: "Amsterdam's Finest Since 1985",
       logo: "🏆",
