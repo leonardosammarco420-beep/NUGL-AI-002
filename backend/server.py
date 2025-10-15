@@ -412,6 +412,22 @@ async def create_press_release(release: PressRelease):
     await db.press_releases.insert_one(release_dict)
     return {"success": True, "id": release.id}
 
+# Media Routes
+@api_router.get("/media", response_model=List[MediaArticle])
+async def get_media_articles(category: Optional[str] = None, subcategory: Optional[str] = None):
+    """
+    Get media articles filtered by category and/or subcategory
+    Categories: NUGL TV, Business, Culture, Grow Products, Wellness, Events
+    """
+    query = {}
+    if category:
+        query["category"] = category
+    if subcategory:
+        query["subcategory"] = subcategory
+    
+    articles = await db.media_articles.find(query, {"_id": 0}).to_list(1000)
+    return articles
+
 # Strain Routes
 @api_router.get("/strains", response_model=List[Strain])
 async def get_strains(search: Optional[str] = None, strain_type: Optional[str] = None):
