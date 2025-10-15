@@ -116,7 +116,7 @@ Status: ✅ Active
 
 ### To Test MetaMask Connection:
 1. Install MetaMask browser extension
-2. Navigate to: https://website-completion.preview.emergentagent.com/wallet
+2. Navigate to: https://cannabis-press.preview.emergentagent.com/wallet
 3. Click "Connect MetaMask" button
 4. Approve connection in MetaMask popup
 5. Verify wallet address and balance display

@@ -17,7 +17,7 @@
 
 #### 1. Navigate to Wallet Page
 ```
-URL: https://website-completion.preview.emergentagent.com/wallet
+URL: https://cannabis-press.preview.emergentagent.com/wallet
 ```
 
 #### 2. Connect Wallet
@@ -107,7 +107,7 @@ Once backend transaction endpoints are ready:
 ## 📱 Mobile Testing
 
 ### For Mobile Browsers with MetaMask Mobile:
-1. Open https://website-completion.preview.emergentagent.com/wallet in MetaMask mobile browser
+1. Open https://cannabis-press.preview.emergentagent.com/wallet in MetaMask mobile browser
 2. Tap "Connect MetaMask"
 3. Approve connection
 4. Test same features as desktop
