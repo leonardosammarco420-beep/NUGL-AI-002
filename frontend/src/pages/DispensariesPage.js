@@ -218,6 +218,7 @@ export default function DispensariesPage() {
       }
     ],
     germany: [
+      // Berlin - Multiple clubs
       {
         id: 'bloom-berlin',
         name: 'Bloom Berlin Cannabis Club',
@@ -232,6 +233,47 @@ export default function DispensariesPage() {
         google_maps_link: 'https://www.google.com/maps/place/Warschauer+Str.+34,+Berlin/@52.5056,13.4494,17z'
       },
       {
+        id: 'berlin-420',
+        name: 'Berlin 420 Social Club',
+        location: 'Berlin, Germany',
+        address: 'Oranienstraße 156, 10969 Berlin',
+        phone: '+49 30 555 23456',
+        website: 'https://www.berlin420.de',
+        hours: 'Mon-Sun: 1:00 PM - 11:00 PM',
+        description: 'Kreuzberg\'s premier cannabis club with diverse membership, educational events, and craft cannabis cultivation.',
+        featured: true,
+        rating: 4.8,
+        google_maps_link: 'https://www.google.com/maps/place/Oranienstra%C3%9Fe+156,+Berlin/@52.5013,13.4188,17z'
+      },
+      {
+        id: 'cannabis-lounge-berlin',
+        name: 'Cannabis Lounge Berlin',
+        location: 'Berlin, Germany',
+        address: 'Schönhauser Allee 89, 10439 Berlin',
+        phone: '+49 30 555 34567',
+        website: 'https://www.cannabislounge-berlin.de',
+        hours: 'Mon-Sun: 3:00 PM - 11:00 PM',
+        description: 'Prenzlauer Berg club with modern design, lounge areas, and organic locally-grown strains.',
+        featured: false,
+        rating: 4.6,
+        google_maps_link: 'https://www.google.com/maps/place/Sch%C3%B6nhauser+Allee+89,+Berlin/@52.5311,13.4129,17z'
+      },
+      {
+        id: 'berlin-green',
+        name: 'Berlin Green Association',
+        location: 'Berlin, Germany',
+        address: 'Kurfürstendamm 178, 10707 Berlin',
+        phone: '+49 30 555 45678',
+        website: 'https://www.berlingreen.de',
+        hours: 'Mon-Fri: 2:00 PM - 10:00 PM, Sat-Sun: 12:00 PM - 10:00 PM',
+        description: 'Upscale club in Charlottenburg offering premium strains, comfortable seating, and members-only events.',
+        featured: false,
+        rating: 4.7,
+        google_maps_link: 'https://www.google.com/maps/place/Kurf%C3%BCrstendamm+178,+Berlin/@52.5034,13.3276,17z'
+      },
+      
+      // Munich - Multiple clubs
+      {
         id: 'green-garden-munich',
         name: 'Green Garden München',
         location: 'Munich, Germany',
@@ -245,6 +287,34 @@ export default function DispensariesPage() {
         google_maps_link: 'https://www.google.com/maps/place/Lindwurmstra%C3%9Fe+88,+M%C3%BCnchen/@48.1272,11.5491,17z'
       },
       {
+        id: 'munich-cannabis-club',
+        name: 'Munich Cannabis Club',
+        location: 'Munich, Germany',
+        address: 'Leopoldstraße 156, 80804 München',
+        phone: '+49 89 555 78901',
+        website: 'https://www.munichcannabis.de',
+        hours: 'Mon-Sun: 2:00 PM - 11:00 PM',
+        description: 'Located near university district, popular with students and young professionals. Regular workshops and tastings.',
+        featured: false,
+        rating: 4.6,
+        google_maps_link: 'https://www.google.com/maps/place/Leopoldstra%C3%9Fe+156,+M%C3%BCnchen/@48.1674,11.5874,17z'
+      },
+      {
+        id: 'bavaria-green',
+        name: 'Bavaria Green Social Club',
+        location: 'Munich, Germany',
+        address: 'Sendlinger Str. 45, 80331 München',
+        phone: '+49 89 555 89012',
+        website: 'https://www.bavariagreen.de',
+        hours: 'Mon-Sun: 1:00 PM - 10:00 PM',
+        description: 'Traditional Bavarian hospitality meets modern cannabis culture. Cozy atmosphere with craft strains.',
+        featured: false,
+        rating: 4.7,
+        google_maps_link: 'https://www.google.com/maps/place/Sendlinger+Str.+45,+M%C3%BCnchen/@48.1351,11.5668,17z'
+      },
+      
+      // Hamburg - Multiple clubs
+      {
         id: 'hanfbar-hamburg',
         name: 'Hanfbar Hamburg Social Club',
         location: 'Hamburg, Germany',
@@ -256,6 +326,79 @@ export default function DispensariesPage() {
         featured: true,
         rating: 4.6,
         google_maps_link: 'https://www.google.com/maps/place/Reeperbahn+42,+Hamburg/@53.5495,9.9597,17z'
+      },
+      {
+        id: 'hamburg-high',
+        name: 'Hamburg High Society',
+        location: 'Hamburg, Germany',
+        address: 'Mönckebergstraße 7, 20095 Hamburg',
+        phone: '+49 40 555 34567',
+        website: 'https://www.hamburghigh.de',
+        hours: 'Mon-Sun: 2:00 PM - 10:00 PM',
+        description: 'Central Hamburg location with harbor views, premium selections, and maritime-themed decor.',
+        featured: false,
+        rating: 4.7,
+        google_maps_link: 'https://www.google.com/maps/place/M%C3%B6nckebergstra%C3%9Fe+7,+Hamburg/@53.5509,10.0042,17z'
+      },
+      
+      // Frankfurt
+      {
+        id: 'frankfurt-cannabis',
+        name: 'Frankfurt Cannabis Association',
+        location: 'Frankfurt, Germany',
+        address: 'Zeil 112, 60313 Frankfurt',
+        phone: '+49 69 555 45678',
+        website: 'https://www.frankfurtcannabis.de',
+        hours: 'Mon-Fri: 3:00 PM - 10:00 PM, Sat-Sun: 1:00 PM - 11:00 PM',
+        description: 'Financial district club with professional atmosphere, quality genetics, and business networking events.',
+        featured: false,
+        rating: 4.6,
+        google_maps_link: 'https://www.google.com/maps/place/Zeil+112,+Frankfurt/@50.1147,8.6912,17z'
+      },
+      
+      // Cologne
+      {
+        id: 'cologne-green',
+        name: 'Cologne Green Collective',
+        location: 'Cologne, Germany',
+        address: 'Ehrenstraße 67, 50672 Köln',
+        phone: '+49 221 555 56789',
+        website: 'https://www.colognegreen.de',
+        hours: 'Mon-Sun: 2:00 PM - 11:00 PM',
+        description: 'Vibrant Ehrenfeld club with artistic community, live music events, and locally sourced organic strains.',
+        featured: false,
+        rating: 4.8,
+        google_maps_link: 'https://www.google.com/maps/place/Ehrenstra%C3%9Fe+67,+K%C3%B6ln/@50.9408,6.9302,17z'
+      },
+      
+      // Stuttgart
+      {
+        id: 'stuttgart-420',
+        name: 'Stuttgart 420 Club',
+        location: 'Stuttgart, Germany',
+        address: 'Königstraße 89, 70173 Stuttgart',
+        phone: '+49 711 555 67890',
+        website: 'https://www.stuttgart420.de',
+        hours: 'Mon-Sun: 3:00 PM - 10:00 PM',
+        description: 'Swabian cannabis culture with focus on sustainability, education, and community wellness programs.',
+        featured: false,
+        rating: 4.5,
+        google_maps_link: 'https://www.google.com/maps/place/K%C3%B6nigstra%C3%9Fe+89,+Stuttgart/@48.7775,9.1794,17z'
+      },
+      
+      // Düsseldorf
+      {
+        id: 'dusseldorf-green',
+        name: 'Düsseldorf Green Society',
+        location: 'Düsseldorf, Germany',
+        address: 'Bolkerstraße 23, 40213 Düsseldorf',
+        phone: '+49 211 555 78901',
+        website: 'https://www.duesseldorfgreen.de',
+        hours: 'Mon-Sun: 2:00 PM - 11:00 PM',
+        description: 'Altstadt club blending Rhine culture with modern cannabis appreciation. Art gallery and lounge space.',
+        featured: false,
+        rating: 4.7,
+        google_maps_link: 'https://www.google.com/maps/place/Bolkerstra%C3%9Fe+23,+D%C3%BCsseldorf/@51.2273,6.7740,17z'
       }
     ],
     australia: [
