@@ -52,30 +52,75 @@ async def populate_strains():
         if 'name' not in strain_data:
             continue
         
-        # Create the strain document with proper structure for frontend
+        # Helper function to convert comma-separated string to list
+        def to_list(value):
+            if not value or value == '':
+                return []
+            return [item.strip() for item in str(value).split(',')]
+        
+        # Build description from available data
+        desc_parts = []
+        if strain_data.get('lineage_parents'):
+            desc_parts.append(f"Lineage: {strain_data['lineage_parents']}")
+        if strain_data.get('medical_uses_common'):
+            desc_parts.append(f"Medical uses: {strain_data['medical_uses_common']}")
+        if strain_data.get('notes'):
+            desc_parts.append(strain_data['notes'])
+        
+        description = '. '.join(desc_parts) if desc_parts else f"A quality {strain_data.get('type', 'hybrid')} strain."
+        
+        # Get THC content (use average of min/max)
+        thc_min = strain_data.get('thc_min_pct', 0)
+        thc_max = strain_data.get('thc_max_pct', 0)
+        thc_content = (thc_min + thc_max) / 2 if (thc_min and thc_max) else 0
+        
+        # Get CBD content (use average of min/max)
+        cbd_min = strain_data.get('cbd_min_pct', 0)
+        cbd_max = strain_data.get('cbd_max_pct', 0)
+        cbd_content = (cbd_min + cbd_max) / 2 if (cbd_min or cbd_max) else 0
+        
+        # Combine primary and secondary effects into a single list
+        effects_list = []
+        if strain_data.get('effects_primary'):
+            effects_list.extend(to_list(strain_data['effects_primary']))
+        if strain_data.get('effects_secondary'):
+            effects_list.extend(to_list(strain_data['effects_secondary']))
+        
+        # Get flavors from aroma_flavor_notes
+        flavors = to_list(strain_data.get('aroma_flavor_notes', ''))
+        
+        # Create the strain document matching the Pydantic model
         strain_doc = {
             'id': strain_data.get('uuid', strain_data.get('strain_id', '')),
             'name': strain_data.get('name', ''),
-            'aka': strain_data.get('aka', ''),
             'type': strain_data.get('type', 'hybrid'),
+            'thc_content': thc_content,
+            'cbd_content': cbd_content,
+            'description': description,
+            'effects': effects_list[:6],  # Limit to 6 effects
+            'flavors': flavors[:5],  # Limit to 5 flavors
+            'image': strain_data.get('image_url', ''),
+            'rating': 4.5,
+            'source': strain_data.get('source_type', 'database'),
+            'affiliate_links': []
+        }
+        
+        # Store full detailed data in separate fields (for future use)
+        strain_doc['_full_data'] = {
+            'aka': strain_data.get('aka', ''),
             'dominance': {
                 'sativa_pct': strain_data.get('dominance_pct_sativa', 50),
                 'indica_pct': strain_data.get('dominance_pct_indica', 50)
             },
             'cannabinoids': {
-                'thc_min': strain_data.get('thc_min_pct', 0),
-                'thc_max': strain_data.get('thc_max_pct', 0),
-                'cbd_min': strain_data.get('cbd_min_pct', 0),
-                'cbd_max': strain_data.get('cbd_max_pct', 0),
+                'thc_min': thc_min,
+                'thc_max': thc_max,
+                'cbd_min': cbd_min,
+                'cbd_max': cbd_max,
                 'cbg_min': strain_data.get('cbg_min_pct', 0),
                 'cbg_max': strain_data.get('cbg_max_pct', 0)
             },
             'terpenes': strain_data.get('terpenes_dominant', ''),
-            'aroma_flavor': strain_data.get('aroma_flavor_notes', ''),
-            'effects': {
-                'primary': strain_data.get('effects_primary', ''),
-                'secondary': strain_data.get('effects_secondary', '')
-            },
             'medical_uses': strain_data.get('medical_uses_common', ''),
             'side_effects': strain_data.get('side_effects_common', ''),
             'lineage': {
@@ -96,12 +141,9 @@ async def populate_strains():
                 'grow_suitability': strain_data.get('grow_suitability', ''),
                 'climate': strain_data.get('climate_preference', '')
             },
-            'image': strain_data.get('image_url', ''),
             'availability': strain_data.get('legal_availability_regions', ''),
             'notes': strain_data.get('notes', ''),
-            'data_confidence': strain_data.get('data_confidence', 'medium'),
-            'source': strain_data.get('source_type', 'database'),
-            'rating': 4.5  # Default rating
+            'data_confidence': strain_data.get('data_confidence', 'medium')
         }
         
         await db.strains.insert_one(strain_doc)
