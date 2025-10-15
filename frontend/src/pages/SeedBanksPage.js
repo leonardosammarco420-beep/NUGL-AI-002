@@ -175,7 +175,7 @@ export default function SeedBanksPage() {
       category: "established"
     },
     {
-      id: 4,
+      id: 5,
       name: "ILoveGrowingMarijuana (ILGM)",
       tagline: "Beginner-Friendly with Guarantees",
       logo: "💚",
