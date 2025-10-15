@@ -547,14 +547,41 @@ export default function SeedBanksPage() {
                       ))}
                     </div>
                   </div>
-                  <Button 
-                    onClick={() => handleVisitBank(bank)}
-                    className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white whitespace-nowrap"
-                    size="lg"
-                  >
-                    Visit {bank.name}
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </Button>
+                  
+                  {/* Special handling for Herbies - show both Global and USA links */}
+                  {bank.name === "The Herbies Headshop" ? (
+                    <div className="flex flex-col gap-2">
+                      <Button 
+                        onClick={() => handleVisitBank(bank)}
+                        className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white whitespace-nowrap"
+                        size="lg"
+                      >
+                        Visit Herbies (Global)
+                        <Globe className="w-4 h-4 ml-2" />
+                      </Button>
+                      <Button 
+                        onClick={() => {
+                          const usaLink = "https://herbiesheadshop.com/usa?utm_source=digitalgreenhouse&utm_medium=people&utm_campaign=digitalgreenhouse_partner&a_aid=digitalgreenhouse&a_cid=d4a9f156";
+                          window.open(usaLink, '_blank');
+                          toast.success("Redirecting to Herbies USA...");
+                        }}
+                        className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white whitespace-nowrap"
+                        size="lg"
+                      >
+                        Visit Herbies USA 🇺🇸
+                        <ExternalLink className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button 
+                      onClick={() => handleVisitBank(bank)}
+                      className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white whitespace-nowrap"
+                      size="lg"
+                    >
+                      Visit {bank.name}
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </Button>
+                  )}
                 </div>
               </div>
             </Card>
