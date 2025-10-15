@@ -87,7 +87,7 @@ class FedExService:
         # Build rate request
         payload = {
             "accountNumber": {
-                "value": "YOUR_ACCOUNT_NUMBER"  # Will be updated with actual account
+                "value": self.account_number
             },
             "requestedShipment": {
                 "shipper": {
