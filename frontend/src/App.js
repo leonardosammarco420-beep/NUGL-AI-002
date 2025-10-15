@@ -78,6 +78,7 @@ function App() {
             <Route path="/seeds" element={<SeedFinderPage />} />
             <Route path="/dispensaries" element={<DispensariesPage />} />
             <Route path="/nft-marketplace" element={<NFTMarketplacePage />} />
+            <Route path="/nft-gallery" element={<NFTGalleryPage />} />
             <Route path="/chat" element={<ChatbotPage />} />
             <Route path="/wallet" element={<WalletPage />} />
             <Route path="/profile" element={<ProfilePage />} />
