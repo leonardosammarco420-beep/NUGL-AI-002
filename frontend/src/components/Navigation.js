@@ -14,7 +14,7 @@ import {
 } from './ui/dropdown-menu';
 import { toast } from 'sonner';
 import axios from 'axios';
-import { Menu, X, LogOut, User, Wallet, Crown, Gift, Building2, ChevronDown, Leaf, Bot, Sprout, Video, Briefcase, Palette, Flower2, Heart, Calendar, TrendingUp, Sparkles, MessageSquare, Brain, Zap, FileText, MapPin, DollarSign, Coins, Image, Layers } from 'lucide-react';
+import { Menu, X, LogOut, User, Wallet, Crown, Gift, Building2, ChevronDown, Leaf, Bot, Sprout, Video, Briefcase, Palette, Flower2, Heart, Calendar, TrendingUp, Sparkles, MessageSquare, Brain, Zap, FileText, MapPin, DollarSign, Coins, Image, Layers, Search, Store } from 'lucide-react';
 
 export default function Navigation() {
   const { user, token, login, logout, API } = useContext(AuthContext);
