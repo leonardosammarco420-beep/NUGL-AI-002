@@ -249,7 +249,7 @@ export default function SeedBanksPage() {
       category: "premium"
     },
     {
-      id: 6,
+      id: 7,
       name: "Crop King Seeds",
       tagline: "Canada's #1 Seed Bank",
       logo: "🍁",
