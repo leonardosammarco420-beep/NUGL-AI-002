@@ -94,6 +94,7 @@ export default function Navigation() {
     { to: '/strains', label: 'Strains', icon: Leaf },
     { to: '/seeds', label: 'Seeds', icon: Sprout },
     { to: '/dispensaries', label: 'Dispensaries', icon: MapPin },
+    { to: '/psychedelics', label: 'Psychedelics', icon: Sparkles },
     { to: '/chat', label: 'AI Chat', icon: Bot },
   ];
 
