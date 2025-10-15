@@ -380,7 +380,10 @@ export default function DispensariesPage() {
     { name: 'Netherlands', count: dispensaries.amsterdam.length, status: 'Decriminalized', color: 'orange' },
     { name: 'Thailand', count: dispensaries.thailand.length, status: 'Fully Legal (2022)', color: 'purple' },
     { name: 'United States', count: dispensaries.usa.length, status: 'State-by-State', color: 'blue' },
-    { name: 'Canada', count: dispensaries.canada.length, status: 'Fully Legal', color: 'teal' }
+    { name: 'Canada', count: dispensaries.canada.length, status: 'Fully Legal', color: 'teal' },
+    { name: 'Germany', count: dispensaries.germany.length, status: 'Legal (2024)', color: 'yellow' },
+    { name: 'Australia', count: dispensaries.australia.length, status: 'Medical Only', color: 'cyan' },
+    { name: 'Spain', count: dispensaries.spain.length, status: 'Social Clubs Legal', color: 'rose' }
   ];
 
   return (
