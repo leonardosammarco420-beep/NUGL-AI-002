@@ -105,6 +105,18 @@ class NewsArticleCreate(BaseModel):
     image_url: Optional[str] = None
     source_url: Optional[str] = None
 
+class MediaArticle(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    url: str
+    category: str  # NUGL TV, Business, Culture, Grow Products, Wellness, Events
+    subcategory: Optional[str] = None
+    excerpt: str
+    image: str
+    date: str
+    source: str
+
 class Strain(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
