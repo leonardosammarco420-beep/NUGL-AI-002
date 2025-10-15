@@ -34,7 +34,7 @@ export default function CryptoCasinoPage() {
       category: 'top',
       payoutSpeed: 'Instant',
       cryptos: ['BTC', 'ETH', 'LTC', 'DOGE', 'XRP'],
-      affiliateUrl: 'https://stake.com/?c=cannacrypto',
+      affiliateUrl: 'https://stake.com/?c=digitalgreenhouse',
       commission: '40% Revenue Share',
     },
     {
@@ -48,8 +48,8 @@ export default function CryptoCasinoPage() {
       category: 'featured',
       payoutSpeed: 'Instant',
       cryptos: ['BTC', 'ETH', 'SOL', 'BNB', 'USDT'],
-      affiliateUrl: 'https://bc.game/i-cannacrypto',
-      commission: '35% Revenue Share',
+      affiliateUrl: 'https://bc.game/i-441vun5xg-n/',
+      commission: '45% Revenue Share',
     },
     {
       id: 3,
@@ -76,8 +76,8 @@ export default function CryptoCasinoPage() {
       category: 'popular',
       payoutSpeed: 'Instant',
       cryptos: ['BTC', 'ETH', 'LTC', 'USDT'],
-      affiliateUrl: 'https://roobet.com/?ref=cannacrypto',
-      commission: '25% Revenue Share',
+      affiliateUrl: 'https://roobet.com/?ref=digitalgreenhou',
+      commission: '35% Revenue Share',
     },
     {
       id: 5,
