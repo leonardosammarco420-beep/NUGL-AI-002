@@ -1146,10 +1146,10 @@ async def get_live_ticker(category: str = 'all'):
         # Cannabis stocks (for cannabis category or all)
         if category in ['cannabis', 'all']:
             cannabis_stocks = [
-                {'symbol': 'TLRY', 'name': 'Tilray Brands', 'price': 1.47, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
-                {'symbol': 'CGC', 'name': 'Canopy Growth', 'price': 3.12, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
+                {'symbol': 'TLRY', 'name': 'Tilray Brands', 'price': 1.64, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
+                {'symbol': 'CGC', 'name': 'Canopy Growth', 'price': 1.00, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
                 {'symbol': 'SNDL', 'name': 'Sundial Growers', 'price': 1.89, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
-                {'symbol': 'ACB', 'name': 'Aurora Cannabis', 'price': 4.56, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
+                {'symbol': 'ACB', 'name': 'Aurora Cannabis', 'price': 4.00, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
                 {'symbol': 'CRON', 'name': 'Cronos Group', 'price': 2.34, 'change': round(random.uniform(-5, 5), 2), 'type': 'cannabis'},
                 {'symbol': 'NUGL', 'name': 'NUGL Inc.', 'price': 0.0011, 'change': round(random.uniform(-10, 10), 2), 'type': 'cannabis'},
             ]
