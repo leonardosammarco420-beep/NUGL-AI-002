@@ -429,14 +429,39 @@ export default function DispensariesPage() {
                   region.color === 'orange' ? 'border-orange-500/30 bg-orange-500/10 hover:border-orange-500' :
                   region.color === 'purple' ? 'border-purple-500/30 bg-purple-500/10 hover:border-purple-500' :
                   region.color === 'blue' ? 'border-blue-500/30 bg-blue-500/10 hover:border-blue-500' :
-                  'border-teal-500/30 bg-teal-500/10 hover:border-teal-500'
+                  region.color === 'teal' ? 'border-teal-500/30 bg-teal-500/10 hover:border-teal-500' :
+                  region.color === 'yellow' ? 'border-yellow-500/30 bg-yellow-500/10 hover:border-yellow-500' :
+                  region.color === 'cyan' ? 'border-cyan-500/30 bg-cyan-500/10 hover:border-cyan-500' :
+                  'border-rose-500/30 bg-rose-500/10 hover:border-rose-500'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <MapPin className={`w-6 h-6 text-${region.color}-400`} />
+                  <MapPin className={`w-6 h-6 ${
+                    region.color === 'emerald' ? 'text-emerald-400' :
+                    region.color === 'orange' ? 'text-orange-400' :
+                    region.color === 'purple' ? 'text-purple-400' :
+                    region.color === 'blue' ? 'text-blue-400' :
+                    region.color === 'teal' ? 'text-teal-400' :
+                    region.color === 'yellow' ? 'text-yellow-400' :
+                    region.color === 'cyan' ? 'text-cyan-400' :
+                    'text-rose-400'
+                  }`} />
                   <span className="text-2xl font-bold text-white">{region.count}</span>
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-1">{region.name}</h3>
+                <p className={`text-xs font-semibold mb-2 ${
+                  region.color === 'emerald' ? 'text-emerald-400' :
+                  region.color === 'orange' ? 'text-orange-400' :
+                  region.color === 'purple' ? 'text-purple-400' :
+                  region.color === 'blue' ? 'text-blue-400' :
+                  region.color === 'teal' ? 'text-teal-400' :
+                  region.color === 'yellow' ? 'text-yellow-400' :
+                  region.color === 'cyan' ? 'text-cyan-400' :
+                  'text-rose-400'
+                }`}>{region.status}</p>
+                <p className="text-xs text-gray-400">Click to view dispensaries</p>
+              </button>
+            ))}
                 <p className={`text-xs font-semibold text-${region.color}-400 mb-2`}>{region.status}</p>
                 <p className="text-xs text-gray-400">Click to view dispensaries</p>
               </button>
