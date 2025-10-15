@@ -6,6 +6,8 @@ import HomePage from './pages/HomePage';
 import NewsPage from './pages/NewsPage';
 import StrainFinderPage from './pages/StrainFinderPage';
 import SeedFinderPage from './pages/SeedFinderPage';
+import AdvancedSeedSearchPage from './pages/AdvancedSeedSearchPage';
+import SeedBanksPage from './pages/SeedBanksPage';
 import PsychedelicsPage from './pages/PsychedelicsPage';
 import NFTMarketplacePage from './pages/NFTMarketplacePage';
 import NFTGalleryPage from './pages/NFTGalleryPage';
