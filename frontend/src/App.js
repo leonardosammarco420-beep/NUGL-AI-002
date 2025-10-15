@@ -77,6 +77,7 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
             <Route path="/strains" element={<StrainFinderPage />} />
             <Route path="/seeds" element={<SeedFinderPage />} />
+            <Route path="/psychedelics" element={<PsychedelicsPage />} />
             <Route path="/dispensaries" element={<DispensariesPage />} />
             <Route path="/nft-marketplace" element={<NFTMarketplacePage />} />
             <Route path="/nft-gallery" element={<NFTGalleryPage />} />
