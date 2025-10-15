@@ -131,26 +131,49 @@ export default function MediaPage() {
         {!loading && articles.length > 0 && (
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-white mb-6">
-              Legacy Content from NUGL.com
+              Featured {currentCategory.title} Articles
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {articles.map((article, index) => (
-                <Card key={index} className="bg-slate-800/50 border-teal-500/20 p-6 hover:bg-slate-800/70 transition-all hover:scale-105">
-                  <h3 className="text-lg font-semibold text-white mb-3 line-clamp-2">
-                    {article.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-3">
-                    {article.excerpt}
-                  </p>
-                  <Button
-                    onClick={() => window.open(article.url, '_blank')}
-                    variant="outline"
-                    className="w-full border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
-                    size="sm"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Read Article
-                  </Button>
+              {articles.map((article) => (
+                <Card key={article.id} className="bg-slate-800/50 border-teal-500/20 overflow-hidden hover:bg-slate-800/70 transition-all hover:scale-105">
+                  {article.image && (
+                    <img 
+                      src={article.image} 
+                      alt={article.title}
+                      className="w-full h-48 object-cover"
+                    />
+                  )}
+                  <div className="p-6">
+                    {article.subcategory && (
+                      <span className="inline-block px-2 py-1 text-xs font-semibold text-teal-400 bg-teal-500/10 rounded-full mb-2">
+                        {article.subcategory}
+                      </span>
+                    )}
+                    <h3 className="text-lg font-semibold text-white mb-3 line-clamp-2">
+                      {article.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+                      {article.excerpt}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-500">
+                        {new Date(article.date).toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'short', 
+                          day: 'numeric' 
+                        })}
+                      </span>
+                      <Button
+                        onClick={() => window.open(article.url, '_blank')}
+                        variant="outline"
+                        className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+                        size="sm"
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Read More
+                      </Button>
+                    </div>
+                  </div>
                 </Card>
               ))}
             </div>
