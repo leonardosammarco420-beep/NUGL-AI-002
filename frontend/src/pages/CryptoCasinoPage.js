@@ -206,8 +206,16 @@ export default function CryptoCasinoPage() {
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-slate-700 rounded-lg flex items-center justify-center overflow-hidden">
-                      <Gamepad2 className="w-8 h-8 text-teal-400" />
+                    <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center overflow-hidden p-2">
+                      <img 
+                        src={casino.logo} 
+                        alt={`${casino.name} logo`}
+                        className="w-full h-full object-contain"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="32">🎰</text></svg>';
+                        }}
+                      />
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-1">{casino.name}</h3>
