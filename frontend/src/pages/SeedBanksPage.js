@@ -322,7 +322,7 @@ export default function SeedBanksPage() {
       category: "legendary"
     },
     {
-      id: 8,
+      id: 9,
       name: "Fast Buds",
       tagline: "Autoflower Specialists",
       logo: "⚡",
