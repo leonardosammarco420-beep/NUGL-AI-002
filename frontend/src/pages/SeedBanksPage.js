@@ -285,7 +285,7 @@ export default function SeedBanksPage() {
       category: "regional"
     },
     {
-      id: 7,
+      id: 8,
       name: "Sensi Seeds",
       tagline: "Legendary Dutch Genetics Since 1985",
       logo: "🌿",
