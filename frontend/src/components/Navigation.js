@@ -192,7 +192,7 @@ export default function Navigation() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button 
-                    className="px-3 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-teal-500 to-emerald-500 text-white hover:from-teal-600 hover:to-emerald-600 transition-colors flex items-center gap-1"
+                    className="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-teal-400 hover:bg-slate-800/50 transition-colors flex items-center gap-1"
                     data-testid="nav-crypto"
                   >
                     <Building2 className="w-4 h-4" />
