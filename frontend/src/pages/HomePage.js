@@ -58,17 +58,27 @@ export default function HomePage() {
       <section className="relative overflow-hidden" data-testid="hero-section">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 via-transparent to-emerald-500/10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative">
-          <div className="text-center space-y-8">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }} data-testid="hero-title">
-              THE DIGITAL GREENHOUSE
-            </h1>
-            <p className="text-2xl sm:text-3xl bg-gradient-to-r from-teal-400 via-emerald-400 to-green-400 bg-clip-text text-transparent font-semibold mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <div className="text-center space-y-6">
+            {/* Logo with Registered Trademark */}
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }} data-testid="hero-title">
+                THE DIGITAL GREENHOUSE
+              </h1>
+              <sup className="text-2xl sm:text-3xl text-teal-400 font-normal">®</sup>
+            </div>
+            
+            {/* Tagline */}
+            <p className="text-xl sm:text-2xl lg:text-3xl bg-gradient-to-r from-teal-400 via-emerald-400 to-green-400 bg-clip-text text-transparent font-semibold italic" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               Where Cannabis Culture Meets Crypto Innovation and AI Intelligence
             </p>
-            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto" style={{ fontFamily: 'Inter, sans-serif' }} data-testid="hero-description">
+            
+            {/* Description */}
+            <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto pt-4" style={{ fontFamily: 'Inter, sans-serif' }} data-testid="hero-description">
               Real-time market intelligence, strain discovery, NFT trading, and AI-powered insights. Monetize your passion with affiliate rewards.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center" data-testid="hero-cta">
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4" data-testid="hero-cta">
               <Link to="/news">
                 <Button size="lg" className="bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white px-8" data-testid="cta-explore-news">
                   Explore News <ArrowRight className="ml-2 w-5 h-5" />
